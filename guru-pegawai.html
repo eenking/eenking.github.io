@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guru &amp; Pegawai — SDN 22 Pontianak Barat</title>
+<meta name="description" content="Direktori kepala sekolah, guru, dan tenaga kependidikan SD Negeri 22 Pontianak Barat." />
+<meta name="theme-color" content="#c1121f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-page="guru">
+
+<header class="header">
+  <div class="container header__bar">
+    <a class="brand" href="index.html">
+      <svg class="brand__logo" viewBox="0 0 48 48" role="img" aria-label="Logo sekolah">
+        <rect width="48" height="48" rx="14" fill="#c1121f" />
+        <path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" />
+        <path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">SDN 22 Pontianak Barat</span>
+        <span class="brand__sub">Website Resmi</span>
+      </span>
+    </a>
+    <button class="nav__toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-utama">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav-utama" aria-label="Navigasi utama">
+      <ul class="nav__list">
+        <li><a class="nav__link" data-nav="beranda" href="index.html">Beranda</a></li>
+        <li><a class="nav__link" data-nav="profil" href="profil.html">Profil</a></li>
+        <li><a class="nav__link" data-nav="guru" href="guru-pegawai.html">Guru &amp; Pegawai</a></li>
+        <li><a class="nav__link" data-nav="absensi" href="absensi.html">Absensi</a></li>
+        <li><a class="nav__link" data-nav="galeri" href="galeri.html">Galeri</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm header__cta" data-link="spmb">SPMB Online</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Beranda</a> <span>/</span> <span>Guru &amp; Pegawai</span></div>
+    <h1>Guru &amp; Pegawai</h1>
+    <p>Direktori pendidik dan tenaga kependidikan SD Negeri 22 Pontianak Barat beserta bidang tugasnya.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="stats reveal" style="margin-bottom:34px">
+      <div class="stat"><div class="stat__num"><span data-count="1">0</span></div><div class="stat__lbl">Kepala Sekolah</div></div>
+      <div class="stat"><div class="stat__num"><span data-count="20">0</span></div><div class="stat__lbl">Guru</div></div>
+      <div class="stat"><div class="stat__num"><span data-count="7">0</span></div><div class="stat__lbl">Tenaga Kependidikan</div></div>
+      <div class="stat"><div class="stat__num"><span data-count="14">0</span></div><div class="stat__lbl">Rombongan Belajar</div></div>
+    </div>
+
+    <div data-tabs class="reveal">
+      <div class="tabs" role="tablist" aria-label="Kategori">
+        <button class="tab is-active" data-tab="kepsek" role="tab" aria-selected="true">Kepala Sekolah</button>
+        <button class="tab" data-tab="guru" role="tab" aria-selected="false">Guru</button>
+        <button class="tab" data-tab="pegawai" role="tab" aria-selected="false">Pegawai</button>
+        <button class="tab" data-tab="grafik" role="tab" aria-selected="false">Data &amp; Grafik</button>
+      </div>
+
+      <!-- Kepala Sekolah -->
+      <div class="tab-panel" data-panel="kepsek">
+        <div class="split">
+          <div class="card" style="border:0;box-shadow:none;background:transparent">
+            <div class="person__photo" style="aspect-ratio:3/4;max-width:320px;font-size:1rem">Foto Kepala Sekolah<br />(ganti dengan foto asli)</div>
+          </div>
+          <div>
+            <span class="badge badge--merah">Kepala Sekolah</span>
+            <h2 style="margin-top:12px" data-cfg="sekolah.kepalaSekolah">Nama Kepala Sekolah</h2>
+            <p class="muted">
+              Memimpin penyelenggaraan pendidikan, membina pendidik dan tenaga kependidikan,
+              serta memastikan layanan pembelajaran berjalan sesuai visi dan misi sekolah.
+            </p>
+            <div class="table-wrap" style="max-width:520px">
+              <table>
+                <tbody>
+                  <tr><td style="color:var(--teks-2);width:42%">Jabatan</td><td>Kepala Sekolah</td></tr>
+                  <tr><td style="color:var(--teks-2)">NIP</td><td>____________________</td></tr>
+                  <tr><td style="color:var(--teks-2)">Pendidikan</td><td>S-1 Pendidikan</td></tr>
+                  <tr><td style="color:var(--teks-2)">Masa Tugas</td><td>Sejak ______</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:18px">
+              <a class="btn btn--ghost btn--sm" data-link="situsGuru">Materi Kepemimpinan (PMM)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guru -->
+      <div class="tab-panel" data-panel="guru" hidden>
+        <div class="grid grid--4" style="gap:20px">
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 1</h3>
+            <div class="person__role">Guru Kelas 1</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 2</h3>
+            <div class="person__role">Guru Kelas 2</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 3</h3>
+            <div class="person__role">Guru Kelas 3</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 4</h3>
+            <div class="person__role">Guru Kelas 4</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 5</h3>
+            <div class="person__role">Guru Kelas 5</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 6</h3>
+            <div class="person__role">Guru Kelas 6</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 7</h3>
+            <div class="person__role">Guru Pendidikan Agama</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+          <div class="card person reveal"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Guru 8</h3>
+            <div class="person__role">Guru PJOK</div>
+            <div class="person__meta">NIP: ____________________</div>
+          </div></div>
+        </div>
+        <p class="small" style="margin-top:20px">Tambahkan kartu baru dengan menyalin blok <code>card person</code> di <code>guru-pegawai.html</code>.</p>
+      </div>
+
+      <!-- Pegawai -->
+      <div class="tab-panel" data-panel="pegawai" hidden>
+        <div class="grid grid--4" style="gap:20px">
+          <div class="card person"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Pegawai 1</h3>
+            <div class="person__role">Kepala Tata Usaha</div>
+            <div class="person__meta">Administrasi sekolah</div>
+          </div></div>
+          <div class="card person"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Pegawai 2</h3>
+            <div class="person__role">Operator Sekolah</div>
+            <div class="person__meta">Dapodik &amp; sistem informasi</div>
+          </div></div>
+          <div class="card person"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Pegawai 3</h3>
+            <div class="person__role">Pustakawan</div>
+            <div class="person__meta">Layanan perpustakaan</div>
+          </div></div>
+          <div class="card person"><div class="card__body">
+            <div class="person__photo">Foto</div>
+            <h3 class="person__name">Nama Pegawai 4</h3>
+            <div class="person__role">Penjaga Sekolah</div>
+            <div class="person__meta">Keamanan &amp; kebersihan</div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- Grafik -->
+      <div class="tab-panel" data-panel="grafik" hidden>
+        <div class="grid grid--2">
+          <div class="embed" data-embed="grafikGuru" data-title="Grafik data guru dan pegawai">
+            <div class="embed__inner">
+              <div class="embed__placeholder">
+                <div>
+                  <div class="embed__placeholder-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
+                  </div>
+                  <h4>Grafik Data Pendidik</h4>
+                  <p>Embed Google Sheets (grafik) akan tampil di sini.</p>
+                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat grafik</button>
+                </div>
+              </div>
+            </div>
+            <div class="embed__note">Sumber: Google Sheets — publikasikan grafik</div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Rekap Ketenagaan</h3>
+              <div class="table-wrap" style="margin-top:12px">
+                <table style="min-width:auto">
+                  <thead><tr><th>Kategori</th><th>Jumlah</th></tr></thead>
+                  <tbody>
+                    <tr><td>Guru PNS / PPPK</td><td>—</td></tr>
+                    <tr><td>Guru Honor / GTT</td><td>—</td></tr>
+                    <tr><td>Tenaga Administrasi</td><td>—</td></tr>
+                    <tr><td>Penjaga / Kebersihan</td><td>—</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="small" style="margin-top:12px">Isi angka sesuai data kepegawaian terbaru.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="embed" style="margin-top:34px" data-embed="dokumentasi" data-title="Dokumen program sekolah">
+      <div class="embed__inner">
+        <div class="embed__placeholder">
+          <div>
+            <div class="embed__placeholder-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+            </div>
+            <h4>Dokumen Program &amp; Praktik Baik</h4>
+            <p>Embed Google Drive (folder/slide presentasi) akan tampil di sini.</p>
+            <button class="btn btn--ghost btn--sm" data-load type="button">Tampilkan dokumen</button>
+          </div>
+        </div>
+      </div>
+      <div class="embed__note">Sumber: Google Drive — visi misi, program sekolah, praktik baik</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <svg class="brand__logo" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="#c1121f" /><path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" /><path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" /></svg>
+          <span class="brand__text"><span class="brand__name">SDN 22 Pontianak Barat</span><span class="brand__sub" style="color:#ff8a95">Website Resmi</span></span>
+        </div>
+        <p style="font-size:.9rem" data-cfg="sekolah.motto">Motto</p>
+        <p style="font-size:.85rem;opacity:.8" data-cfg="sekolah.alamat">Alamat</p>
+      </div>
+      <div>
+        <h4>Navigasi</h4>
+        <ul class="footer__list">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profil.html">Profil Sekolah</a></li>
+          <li><a href="guru-pegawai.html">Guru &amp; Pegawai</a></li>
+          <li><a href="absensi.html">Absensi</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Layanan</h4>
+        <ul class="footer__list">
+          <li><a data-link="spmb">SPMB Online</a></li>
+          <li><a data-link="erapor">Portal E-Rapor</a></li>
+          <li><a data-link="pmm">Platform Merdeka Mengajar</a></li>
+          <li><a data-link="situsGuru">Situs Guru Lama</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <ul class="footer__list">
+          <li data-cfg="sekolah.telepon">Telepon</li>
+          <li><a data-cfg="sekolah.email" href="#">Email</a></li>
+          <li data-cfg="sekolah.jamLayanan">Jam layanan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> SD Negeri 22 Pontianak Barat.</span>
+      <span>Editor: <span data-cfg="sekolah.editor">Editor</span></span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Kembali ke atas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 14 6-6 6 6"/></svg></button>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

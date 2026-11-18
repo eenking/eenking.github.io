@@ -1,328 +1,153 @@
-# eenking.github.io
-# Panduan Membangun Ulang di Google Sites
-### SDN 22 Pontianak Barat — versi id.belajar (gratis)
+# Website SDN 22 Pontianak Barat — Template Gabungan
 
-Panduan klik-demi-klik untuk menggabungkan 4 situs lama menjadi **satu** Google Sites,
-dengan tema putih–merah dan semua embed yang sudah disiapkan.
-Kerjakan berurutan; perkiraan waktu 2–3 jam (bisa dicicil).
+Satu project website berisi gabungan konten dari 4 Google Sites lama, dengan desain
+modern bertema **putih–merah** untuk Sekolah Dasar Negeri.
+
+| Situs lama | Digabung menjadi |
+|---|---|
+| `sdn-22-pontianak-barat` (Beranda, Profil, Galeri, SPMB) | `index.html`, `profil.html`, `galeri.html` |
+| `absensisdn22pb` (absen masuk/pulang, rekap, PDF) | `absensi.html` |
+| `sdn22pontianakbarat` (Login, Visi Misi, Struktur, Prestasi, Video, Kantin) | `profil.html`, `absensi.html`, `index.html` |
+| `gurudanpegawai` (Kepala Sekolah, Guru, Pegawai, Grafik) | `guru-pegawai.html` |
 
 ---
 
-## 0. Baca dulu — 5 batasan Google Sites gratis
+## 1. Isi folder
 
-| Batasan | Akibatnya | Solusi |
+```
+sdn22-website/
+├─ index.html            Beranda (hero, sambutan, agenda, galeri, video, peta)
+├─ profil.html           Profil, visi & misi, struktur organisasi, fasilitas, prestasi
+├─ guru-pegawai.html     Tab: Kepala Sekolah / Guru / Pegawai / Data & Grafik
+├─ absensi.html          Form absen, rekap bulanan, arsip laporan
+├─ galeri.html           Album foto (lightbox) + video + dokumen Drive
+├─ PANDUAN-GOOGLE-SITES.md  Panduan klik-demi-klik membangun ulang di Google Sites
+└─ assets/
+   ├─ css/style.css      Semua tampilan (warna, tipografi, responsif)
+   ├─ js/app.js          KONFIGURASI + interaksi (menu, tab, embed, lightbox)
+   └─ img/*.svg          Gambar ilustrasi (ganti dengan foto asli)
+```
+
+Prinsipnya: **semua teks sekolah, link, dan URL embed diatur di satu tempat**
+(`assets/js/app.js` → `SITE_CONFIG`). Halaman lain otomatis mengikuti.
+
+---
+
+## 2. Melihat hasilnya
+
+Buka `index.html` langsung di browser (klik dua kali). Untuk hasil terbaik
+(embed iframe kadang dibatasi saat dibuka sebagai `file://`), jalankan server lokal:
+
+```bat
+cd C:\Users\BOGEM\sdn22-website
+python -m http.server 8787
+```
+
+Lalu buka <http://localhost:8787/index.html>.
+
+---
+
+## 3. Yang perlu diisi sebelum dipakai
+
+Buka `assets/js/app.js`, isi bagian `SITE_CONFIG`:
+
+| Bagian | Isi |
+|---|---|
+| `sekolah.alamat` | Sudah diisi dari Google Maps: **Gg. Selamat 3 No. 46, Sungai Jawi Dalam, Pontianak Barat 78244** — mohon dicek |
+| `sekolah.telepon`, `whatsapp`, `email` | Nomor & email resmi sekolah (`whatsapp` format `62812...`) |
+| `sekolah.npsn`, `kepalaSekolah`, `editor` | Data resmi |
+| `links.erapor`, `links.pengumuman`, `links.drive`, `links.instagram`, dll. | URL asli layanan sekolah |
+| `embeds.*` | URL sematan (lihat bagian 4) |
+
+Data contoh (jumlah siswa 420, guru 28, prestasi, dst.) ada di file HTML masing-masing —
+ganti angka pada atribut `data-count="..."` dan isi tabel prestasi/rekap.
+
+---
+
+## 4. Mengambil URL embed
+
+| Kunci di `SITE_CONFIG.embeds` | Sumber | Cara mengambil |
 |---|---|---|
-| Google Sites **tidak bisa** di-embed di Google Sites lain | 4 situs lama tidak bisa "ditumpuk" dengan iframe | Isi dipindah/disalin ke halaman baru, atau ditautkan |
-| Tidak ada CSS/JS kustom | Animasi, lightbox, menu hamburger, statistik berjalan **tidak bisa** ditiru | Pakai komponen bawaan: banner, korsel, kartu, tombol |
-| Domain tetap `sites.google.com/admin.sd.belajar.id/...` | Tidak bisa pakai domain sekolah sendiri | Perpendek dengan bit.ly, atau lanjut pakai tautan panjang |
-| Publikasi "Siapa saja" bisa dibatasi admin sekolah | Situs tidak bisa dibuka orang luar | Cek di **Publikasikan → Kelola → Siapa yang dapat melihat** |
-| Form/Sheet milik domain | Pengunjung luar yang tidak login **tidak bisa mengisi** form | Set form: **Siapa saja yang memiliki link** |
+| `maps` | Google Maps | Cari lokasi → **Bagikan** → **Sematkan peta** → salin isi `src="..."` |
+| `youtubeProfil`, `youtubeKegiatan` | YouTube | **Bagikan** → **Sematkan** → salin `https://www.youtube.com/embed/ID` |
+| `formAbsen` | Google Forms | **Kirim** → ikon `< >` → salin URL, tambahkan `?embedded=true` |
+| `rekapAbsen`, `grafikGuru` | Google Sheets | **File** → **Bagikan** → **Publikasikan ke web** → pakai URL `pubhtml` |
+| `kalender` | Google Calendar | **Setelan kalender** → **Integrasikan kalender** → salin `src="..."` |
+| `dokumentasi` | Google Drive | File/folder → **Bagikan** → **Sematkan** (folder harus "Siapa saja yang punya link") |
 
-> Kalau butuh tampilan persis seperti template `sdn22-website` (animasi, lightbox,
-> menu mobile), itu hanya bisa lewat hosting HTML gratis (Netlify/GitHub Pages),
-> lalu ditautkan dari Google Sites. Untuk sekarang kita pakai jalur Google Sites.
+Embed dimuat **otomatis saat hampir terlihat** (hemat kuota, halaman tetap cepat).
+Kalau suatu kunci dibiarkan kosong, kotaknya menampilkan panduan, bukan kotak kosong.
 
----
-
-## 1. Persiapan (10 menit)
-
-1. Buka <https://sites.google.com> → login **akun sekolah** (`...@admin.sd.belajar.id`).
-2. Klik **Kosong** (Blank) untuk membuat situs baru.
-3. Klik judul di kiri atas → ganti menjadi: **SDN 22 Pontianak Barat**.
-4. Klik **Publikasikan** → **Alamat web** → **Kelola** → isi:
-   `sdn22-pontianak-barat` → **Simpan**. (Alamat akhir:
-   `sites.google.com/admin.sd.belajar.id/sdn22-pontianak-barat`)
-5. Jangan hapus 4 situs lama dulu — dipakai sebagai sumber salin-tempel.
+> **Penting soal absensi:** jangan bagikan spreadsheet absensi dengan mode
+> "siapa saja bisa mengedit". Rekap untuk publik cukup versi `pubhtml`
+> (hanya tampil), sedangkan form absensi tetap butuh login akun sekolah.
 
 ---
 
-## 2. Struktur halaman
+## 5. Menggabungkan 4 Google Sites — langkah nyata
 
-Klik **Halaman** (panel kanan) → **+** → **Halaman baru** untuk setiap baris.
-Gunakan menu **⋮ → Tambahkan ke menu navigasi** agar muncul di atas.
+> **Pengguna id.belajar (Google Sites gratis):** ikuti panduan klik-demi-klik di
+> **`PANDUAN-GOOGLE-SITES.md`** — sudah disesuaikan dengan batasan akun
+> `admin.sd.belajar.id` (tanpa domain kustom, tanpa CSS/JS, batasan form).
 
-```
-Beranda                  (halaman utama)
-├─ Profil
-│   ├─ Visi & Misi
-│   ├─ Struktur Organisasi
-│   └─ Fasilitas
-├─ Guru & Pegawai
-│   ├─ Kepala Sekolah
-│   ├─ Guru
-│   └─ Pegawai
-├─ Absensi
-│   ├─ Absen Hari Ini
-│   └─ Rekap & Arsip
-└─ Galeri
-```
+Google Sites **tidak menyediakan fitur merge/gabung project**, dan **tidak ada API**
+untuk memindahkan halaman antar-situs. Jadi penggabungan dilakukan dengan salah satu
+dari dua cara berikut.
 
-Menu navigasi: **Halaman → Menu navigasi → Di atas** (gaya paling mirip template).
-Supaya rapi, sembunyikan sub-halaman dari menu dengan ikon mata (⋮ → Sembunyikan dari navigasi),
-lalu tautkan dari halaman induknya memakai tombol.
+### Cara A (disarankan) — pakai website ini sebagai situs utama
 
----
+1. **Isi konfigurasi** seperti bagian 3 dan 4.
+2. **Hosting gratis** (pilih salah satu):
+   - **Netlify Drop**: buka <https://app.netlify.com/drop>, tarik folder `sdn22-website` → langsung dapat URL.
+   - **GitHub Pages**: buat repo → unggah semua file → Settings → Pages → Deploy from branch.
+   - **Cloudflare Pages**: hubungkan repo/folder yang sama.
+3. **Domain**: bisa tetap memakai subdomain gratis, atau pasang domain sekolah
+   (mis. `sdn22pontianakbarat.sch.id`) lewat pengaturan DNS di penyedia hosting.
+4. **Situs lama**: jangan dihapus dulu. Ubah menu situs lama menjadi tautan ke situs
+   baru ("Situs ini telah pindah ke ..."), atau arsipkan setelah 1–2 bulan.
+5. Semua konten lama yang berupa teks/foto **disalin** ke halaman yang sesuai
+   (lihat tabel di bagian atas). Form absensi dan rekap otomatis ikut karena
+   ditampilkan lewat embed — datanya tidak berubah.
 
-## 3. Tema & warna (sekali saja)
+### Cara B — tetap di Google Sites (satu project baru)
 
-**Tema** (panel kanan) → **Sesuaikan**:
+1. Google Sites → **Kosong** → beri nama "SDN 22 Pontianak Barat".
+2. Buat halaman: **Beranda, Profil, Guru & Pegawai, Absensi, Galeri**.
+3. Untuk tiap halaman, **salin-tempel** isi dari situs lama (buka dua tab berdampingan;
+   blok teks → Ctrl+C → Ctrl+V di halaman baru). Gambar diunduh dari situs lama lalu
+   diunggah ulang.
+4. Samakan tema: **Tema** → warna khusus `#C1121F`, font *Plus Jakarta Sans* /
+   *Inter*, sudut membulat, header putih.
+5. Tambahkan embed: **Sisipkan** → **Sematkan** → **Kode sematan**
+   (untuk Maps/YouTube/Forms/Sheets/Calendar, salin kode `<iframe>` dari sumbernya).
+6. **Publikasikan** → atur "Siapa yang dapat melihat" → *Siapa saja*.
 
-| Pengaturan | Nilai |
-|---|---|
-| Warna utama / kustom | `#C1121F` (merah) |
-| Warna sekunder | `#8B0F1A` (merah tua) |
-| Latar/isi | `#FFFFFF` (putih) |
-| Warna aksen/latar lembut | `#FFF8F8` |
-| Font judul | **Plus Jakarta Sans** (jika tidak ada: *Inter* / *Lato*) |
-| Font isi | **Plus Jakarta Sans** atau *Roboto* |
-| Gaya | Sudut membulat/Lembut, latar terang |
-
-**Banner Beranda:** klik area banner → **Ganti gambar** → unggah foto gedung sekolah
-(rasio lebar, minimal 1600×600 px). Isi judul banner: *SDN 22 Pontianak Barat*,
-subjudul: *Membangun Generasi Cerdas, Berkarakter, dan Berbudaya*,
-tombol: *SPMB Online* → tautkan ke halaman pendaftaran.
+**Batasan yang perlu diketahui:**
+- Google Sites **tidak bisa** di-embed di dalam Google Sites lain (diblokir
+  `X-Frame-Options`), jadi keempat situs lama tidak bisa sekadar ditumpuk dengan iframe.
+  Yang bisa ditumpuk adalah konten *di dalamnya* (Forms, Sheets, Maps, YouTube, Drive).
+- Menu, desain, dan warna tidak bisa diimpor otomatis — harus diatur manual.
 
 ---
 
-## 4. Halaman Beranda — urutan bagian
+## 6. Catatan desain
 
-Untuk menambah bagian baru: arahkan kursor ke bawah bagian terakhir → klik **+** atau
-**Tambahkan bagian**. Tata letak diatur lewat ikon **Tata letak** pada toolbar bagian.
-
-| # | Bagian | Isi | Tata letak |
-|---|---|---|---|
-| 1 | Banner | Judul + subjudul + tombol **SPMB Online** & **Profil Sekolah** | Banner besar |
-| 2 | Layanan | 4 kartu: **SPMB**, **E-Rapor**, **Absensi**, **PMM** (masing-masing tombol ke URL) | 4 kolom |
-| 3 | Sambutan | Foto kepala sekolah + teks sambutan + nama & NIP | 2 kolom (gambar kiri) |
-| 4 | Statistik | 4 kotak angka: Peserta Didik, Guru & Pegawai, Rombel, Prestasi | 4 kolom |
-| 5 | Agenda | Sematan **Google Calendar** + 2–3 kartu pengumuman | 2 kolom |
-| 6 | Galeri | **Korsel** gambar (6 foto) + tombol *Lihat semua galeri* | 1 kolom |
-| 7 | Video | Sematan **YouTube** video profil | 1 kolom |
-| 8 | Lokasi & Kontak | Sematan **Google Maps** + teks alamat/telepon/email/jam layanan | 2 kolom |
-| 9 | Penutup | Teks ajakan + tombol SPMB | 1 kolom |
-
-**Tombol:** **Sisipkan → Tombol** → isi label → **Tautan** → pilih halaman atau tempel URL
-→ gaya **Diisi** (merah) untuk aksi utama, **Garis besar** untuk aksi kedua.
-
-**Kartu layanan:** gunakan **Sisipkan → Kotak teks** di dalam bagian 4 kolom, beri
-latar `#FFF8F8`, lalu tambahkan tombol kecil di bawah teks.
+- Warna: merah `#C1121F` / `#8B0F1A`, putih `#FFFFFF`, latar lembut `#FFF8F8`.
+- Font: *Plus Jakarta Sans* (dengan fallback sistem jika offline).
+- Komponen: navbar sticky + menu mobile, hero, kartu layanan, statistik berjalan,
+  tab, akordeon, galeri + lightbox, embed lazy-load, tombol ke atas, footer 4 kolom.
+- Sudah responsif (≤1000px, ≤860px, ≤560px) dan ramah cetak (`@media print`).
+- Gambar di `assets/img/*.svg` hanya ilustrasi. Ganti dengan foto asli:
+  simpan `assets/img/upacara.jpg`, lalu ubah `src` dan `data-lightbox` di HTML.
 
 ---
 
-## 5. Halaman Profil
+## 7. Checklist sebelum rilis
 
-1. **Identitas**: bagian 2 kolom — kiri tabel identitas (Nama, NPSN, Jenjang,
-   Akreditasi, Alamat, Jam Layanan), kanan kotak motto.
-   Tabel: **Sisipkan → Tabel** (2 kolom).
-2. **Visi & Misi**: bagian 1 kolom berisi 3 kotak teks berjudul *Visi*, *Misi*, *Tujuan*.
-   Google Sites tidak punya akordeon — gunakan sub-halaman *Visi & Misi* bila isinya panjang.
-3. **Struktur Organisasi**: **Sisipkan → Gambar** bagan (buat di Canva/Slides, ekspor PNG),
-   atau **Sisipkan → Drive** bila bagan berupa Slides/PDF.
-4. **Fasilitas**: bagian 3 kolom × 2 baris, tiap kolom: ikon/emoji + judul + 1 kalimat.
-5. **Prestasi**: **Sisipkan → Tabel** (Tahun, Prestasi, Tingkat, Keterangan).
-
----
-
-## 6. Halaman Guru & Pegawai
-
-Google Sites tidak punya tab, jadi pakai sub-halaman (sudah dibuat di langkah 2):
-
-- **Kepala Sekolah** — 2 kolom: foto (rasio 3:4) + tabel jabatan/NIP/pendidikan/masa tugas.
-- **Guru** — bagian 4 kolom berisi kartu: foto (rasio 1:1), nama, jabatan, NIP.
-  Cara cepat: buat 1 kartu, lalu **duplikat bagian** (ikon duplikat pada toolbar bagian)
-  dan ganti isinya.
-- **Pegawai** — sama, 4 kolom.
-- **Data & Grafik** — **Sisipkan → Drive** pilih spreadsheet grafik, atau sematkan
-  grafik Sheets (kode di bagian 9).
-
-Di halaman induk **Guru & Pegawai**, buat 3 tombol besar menuju sub-halaman tersebut.
-
----
-
-## 7. Halaman Absensi
-
-1. **Absen Hari Ini**
-   - **Sisipkan → Formulir** → pilih form absensi (atau tempel kode iframe, bagian 9).
-   - Tambahkan kotak catatan: "Isi absen sebelum pukul 07.15 WIB".
-2. **Rekap & Arsip**
-   - **Sisipkan → Drive** → pilih file PDF rekap terbaru (atau sematkan lewat iframe).
-   - Daftar arsip: **Sisipkan → Daftar isi** atau tombol-tombol menuju file PDF.
-3. **Tombol ke situs lama** (opsional, masa transisi):
-   *"Buka arsip absensi lama"* → `https://sites.google.com/admin.sd.belajar.id/absensisdn22pb/halaman-muka`
-
-**Penting:** bila pengunjung situs bukan warga sekolah, buka form → **Setelan →
-Respons → Siapa yang dapat merespons: Siapa saja yang memiliki link** (jangan "Dibatasi").
-Jika admin sekolah melarang, form hanya bisa diisi setelah login akun sekolah.
-
----
-
-## 8. Halaman Galeri
-
-1. **Sisipkan → Korsel** → unggah 6–8 foto (otomatis bisa digeser).
-2. **Sisipkan → YouTube** → tempel tautan video (bukan kode iframe).
-3. **Sisipkan → Drive** → pilih folder dokumentasi
-   (folder harus dibagikan **Siapa saja yang memiliki link**).
-4. Tambahkan keterangan singkat di bawah setiap media.
-
----
-
-## 9. Kode embed siap tempel
-
-**Sisipkan → Sematkan → tab "Kode sematan" → tempel → Berikutnya → Sisipkan.**
-Ganti bagian `GANTI_...` dengan ID milik Anda.
-
-**A. Peta lokasi (sudah terverifikasi — lokasi sekolah ditemukan di Maps)**
-```html
-<iframe src="https://www.google.com/maps?q=SDN%2022%20Pontianak%20Barat&output=embed"
-        width="100%" height="420" style="border:0" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-```
-> Untuk versi resmi: Google Maps → cari lokasi → **Bagikan → Sematkan peta → Salin HTML**.
-
-**B. Sematan Google Maps resmi (pola umum)**
-```html
-<iframe src="GANTI_SRC_DARI_MAPS" width="100%" height="420" style="border:0"
-        loading="lazy" allowfullscreen></iframe>
-```
-
-**C. YouTube (video profil / kegiatan)**
-```html
-<iframe width="100%" height="420"
-        src="https://www.youtube.com/embed/GANTI_ID_VIDEO"
-        title="Video SDN 22 Pontianak Barat" frameborder="0"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-```
-Kanal sekolah: <https://www.youtube.com/@sdn22pontianakbarat>
-
-**D. Google Forms (absensi)**
-```html
-<iframe src="https://docs.google.com/forms/d/e/GANTI_ID_FORM/viewform?embedded=true"
-        width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
-```
-
-**E. Google Sheets rekap (hanya tampil, tidak bisa diedit)**
-```html
-<iframe src="https://docs.google.com/spreadsheets/d/e/GANTI_ID_PUBLIKASI/pubhtml?widget=true&headers=false"
-        width="100%" height="600" frameborder="0"></iframe>
-```
-Cara dapat URL: spreadsheet → **File → Bagikan → Publikasikan ke web → HTML** → salin.
-
-**F. Google Calendar (agenda)**
-```html
-<iframe src="GANTI_SRC_KALENDER" width="100%" height="500" frameborder="0"
-        scrolling="no"></iframe>
-```
-Cara dapat: **Setelan kalender → Integrasikan kalender → salin isi `src="..."`**.
-
-**G. Dokumen PDF Drive (rekap yang sudah ada)**
-```html
-<iframe src="https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/preview"
-        width="100%" height="640" frameborder="0" allow="autoplay"></iframe>
-```
-
----
-
-## 10. Kalau belum punya Google Form absensi
-
-Buat di <https://forms.new> (akun sekolah), judul **"Absensi Guru & Pegawai SDN 22 Pontianak Barat"**.
-
-| No | Pertanyaan | Jenis | Wajib |
-|---|---|---|---|
-| 1 | Nama lengkap | Jawaban singkat | Ya |
-| 2 | NIP / ID Pegawai | Jawaban singkat | Tidak |
-| 3 | Jabatan | Dropdown (Kepala Sekolah, Guru Kelas, Guru Mapel, Tata Usaha, Pegawai) | Ya |
-| 4 | Jenis absen | Pilihan ganda (Masuk, Pulang) | Ya |
-| 5 | Tanggal | Tanggal | Ya |
-| 6 | Jam | Waktu | Ya |
-| 7 | Status | Pilihan ganda (Hadir, Izin, Sakit, Cuti, Dinas Luar) | Ya |
-| 8 | Keterangan | Paragraf | Tidak |
-
-Setelan form:
-- **Respons → Kumpulkan alamat email: Terverifikasi** (agar tidak ada entri palsu).
-- **Respons → Siapa yang dapat merespons: Siapa saja yang memiliki link** (untuk pengunjung umum).
-- **Respons → Buat spreadsheet** → dapat sheet otomatis untuk rekap.
-
----
-
-## 11. Rekap otomatis di Google Sheets
-
-Anggap sheet respons bernama `Form Responses 1`, kolom: `B` Nama, `E` Tanggal, `H` Status.
-
-Buat sheet **Rekap**, lalu:
-
-```
-A2: Nama guru (daftar nama)
-B2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Hadir";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-C2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Izin";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-D2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Sakit";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-E2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Cuti";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-F2: =IFERROR(B2/(B2+C2+D2+E2);0)      ← format sebagai persen
-```
-
-Tarik rumus ke bawah, lalu **Publikasikan ke web** sheet `Rekap` dan sematkan
-ke halaman **Absensi → Rekap** (kode E di atas).
-
-> Jika regional sheet memakai koma, ganti `;` menjadi `,` pada rumus.
-
----
-
-## 12. Aset yang sudah ditemukan (pakai ulang, tidak perlu bikin baru)
-
-| Aset | URL |
-|---|---|
-| Kanal YouTube sekolah | `https://www.youtube.com/@sdn22pontianakbarat` |
-| Rekap absensi April 2025 (PDF) | `https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/view` |
-| Laporan absensi 9 Mei 2025 (PDF) | `https://drive.google.com/file/d/1btHzKuWdARIcddXP7SqajOY7cuNNbW5y/view` |
-| Laporan absensi 8 Mei 2025 (PDF) | `https://drive.google.com/file/d/1RiaKkm0gNeCRpCJAwPuy4W3B1yPWefrN/view` |
-| Portal PMM | `https://guru.kemdikbud.go.id/` |
-| Situs lama 1 (Beranda, Profil, Galeri, SPMB) | `https://sites.google.com/admin.sd.belajar.id/sdn-22-pontianak-barat/beranda` |
-| Situs lama 2 (Absensi) | `https://sites.google.com/admin.sd.belajar.id/absensisdn22pb/halaman-muka` |
-| Situs lama 3 (Login, Profil, Berita, Lokasi) | `https://sites.google.com/admin.sd.belajar.id/sdn22pontianakbarat/loginsdn22pb` |
-| Situs lama 4 (Guru & Pegawai) | `https://sites.google.com/admin.sd.belajar.id/gurudanpegawai/kepala-sekolah` |
-
-**Peta halaman situs lama 3** (untuk memastikan tidak ada yang terlewat):
-`/home` · `/profile/logo-sekolah` · `/profile/visi-misi` ·
-`/profile/struktur-organisasi-sekolah` · `/berita/prestasi-akademik` ·
-`/berita/prestasi-non-akademik` · `/berita/bukti-video-kegiatan` ·
-`/berita/kantin-sehat` · `/lokasi`
-
----
-
-## 13. Publikasi
-
-1. **Publikasikan** → **Siapa yang dapat melihat** → **Siapa saja**.
-   Jika opsi ini terkunci oleh admin, gunakan **Siapa saja di [domain sekolah]**
-   atau minta admin mengizinkan publikasi.
-2. Klik **Publikasikan** → konfirmasi.
-3. Uji di **jendela privat/incognito** (tanpa login): semua halaman, semua embed,
-   form bisa dibuka.
-4. Salin tautan pendek (bit.ly) untuk dibagikan ke orang tua siswa.
-5. Setelah situs baru stabil ±1 bulan:
-   - Situs lama 1: ubah beranda menjadi "Situs telah pindah ke [tautan baru]".
-   - Situs lama 2, 3, 4: arsipkan (jangan langsung dihapus — masih menyimpan PDF lama).
-6. Unduh salinan PDF/arsip penting dari Drive ke perangkat sekolah sebagai cadangan.
-
----
-
-## 14. Checklist akhir
-
-- [ ] Semua 5 halaman utama + sub-halaman sudah dibuat & urut di menu
-- [ ] Warna `#C1121F` + font Plus Jakarta Sans terpasang
-- [ ] Banner memakai foto asli sekolah (bukan ilustrasi)
-- [ ] Nama, NIP, foto kepala sekolah & guru sudah benar
-- [ ] Peta menunjuk lokasi benar (Gg. Selamat 3 No. 46, Sungai Jawi Dalam)
-- [ ] Form absensi bisa diisi dari incognito
-- [ ] Rekap Sheets tampil (mode publikasi, bukan edit)
-- [ ] Video YouTube bisa diputar
-- [ ] Tautan SPMB / E-Rapor / PMM tidak ada yang kosong
-- [ ] Diuji di HP (menu & tabel tidak terpotong)
-- [ ] Tautan situs baru dibagikan; situs lama diberi pengumuman pindah
-
----
-
-### Catatan
-
-Template HTML di folder ini (`sdn22-website/`) tetap bisa dipakai sebagai **acuan visual**
-saat menyusun Google Sites: buka `index.html` di browser di sebelah tab Google Sites,
-lalu tiru susunan bagian, teks, dan warnanya.
+- [ ] Alamat, telepon, email, NPSN, nama kepala sekolah sudah benar
+- [ ] Angka statistik & tabel prestasi sesuai data terbaru
+- [ ] Foto kepala sekolah, guru, dan galeri sudah foto asli (bukan ilustrasi)
+- [ ] URL embed sudah diisi dan diuji (peta, video, form, rekap, kalender)
+- [ ] Link SPMB / E-Rapor / PMM tidak ada yang `href="#"` (cek di konsol browser)
+- [ ] Spreadsheet absensi tidak dapat diedit publik
+- [ ] Diuji di HP (menu hamburger, tabel bisa digeser)

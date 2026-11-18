@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Absensi Digital — SDN 22 Pontianak Barat</title>
+<meta name="description" content="Absensi masuk dan pulang guru serta pegawai SD Negeri 22 Pontianak Barat, lengkap dengan rekap bulanan." />
+<meta name="theme-color" content="#c1121f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body data-page="absensi">
+
+<header class="header">
+  <div class="container header__bar">
+    <a class="brand" href="index.html">
+      <svg class="brand__logo" viewBox="0 0 48 48" role="img" aria-label="Logo sekolah">
+        <rect width="48" height="48" rx="14" fill="#c1121f" />
+        <path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" />
+        <path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">SDN 22 Pontianak Barat</span>
+        <span class="brand__sub">Website Resmi</span>
+      </span>
+    </a>
+    <button class="nav__toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-utama">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav-utama" aria-label="Navigasi utama">
+      <ul class="nav__list">
+        <li><a class="nav__link" data-nav="beranda" href="index.html">Beranda</a></li>
+        <li><a class="nav__link" data-nav="profil" href="profil.html">Profil</a></li>
+        <li><a class="nav__link" data-nav="guru" href="guru-pegawai.html">Guru &amp; Pegawai</a></li>
+        <li><a class="nav__link" data-nav="absensi" href="absensi.html">Absensi</a></li>
+        <li><a class="nav__link" data-nav="galeri" href="galeri.html">Galeri</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm header__cta" data-link="spmb">SPMB Online</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Beranda</a> <span>/</span> <span>Absensi</span></div>
+    <h1>Absensi Masuk &amp; Pulang</h1>
+    <p>Presensi digital guru dan tenaga kependidikan SD Negeri 22 Pontianak Barat. Isi formulir di bawah setiap hari kerja.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="grid grid--2" style="align-items:start">
+
+      <!-- Form Absen -->
+      <div class="reveal">
+        <span class="eyebrow">Formulir</span>
+        <h2>Absen Hari Ini</h2>
+        <p class="muted">Pilih jenis absen, lalu isi data sesuai jam kedatangan atau kepulangan Anda.</p>
+
+        <div class="embed embed--tall" data-embed="formAbsen" data-title="Formulir absensi">
+          <div class="embed__inner">
+            <div class="embed__placeholder">
+              <div>
+                <div class="embed__placeholder-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/><rect x="8" y="2" width="8" height="8" rx="2"/><path d="m9 15 2 2 4-4"/></svg>
+                </div>
+                <h4>Formulir Absensi</h4>
+                <p>Embed Google Forms akan tampil di sini. Isi <code>SITE_CONFIG.embeds.formAbsen</code> dengan URL form yang berakhiran <code>?embedded=true</code>.</p>
+                <button class="btn btn--ghost btn--sm" data-load type="button">Muat formulir</button>
+              </div>
+            </div>
+          </div>
+          <div class="embed__note">Sumber: Google Forms — absen masuk &amp; pulang</div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="card__body">
+            <h3 style="font-size:1rem">Sudah punya formulir lama?</h3>
+            <p class="small muted">Formulir absensi Anda saat ini tetap bisa dipakai. Cukup buka situs absensi lama, atau salin tautan form-nya ke konfigurasi website baru ini.</p>
+            <a class="btn btn--ghost btn--sm" data-link="situsAbsensi">Buka Situs Absensi Lama</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rekap -->
+      <div class="reveal">
+        <span class="eyebrow">Rekap</span>
+        <h2>Rekap Bulanan</h2>
+        <p class="muted">Data rekap otomatis dari spreadsheet absensi yang dipublikasikan.</p>
+
+        <div class="embed embed--tall" data-embed="rekapAbsen" data-title="Rekap absensi bulanan">
+          <div class="embed__inner">
+            <div class="embed__placeholder">
+              <div>
+                <div class="embed__placeholder-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+                </div>
+                <h4>Tabel Rekap Absensi</h4>
+                <p>Embed Google Sheets akan tampil di sini. Publikasikan spreadsheet (File → Bagikan → Publikasikan ke web) lalu tempel URL <code>pubhtml</code>.</p>
+                <button class="btn btn--ghost btn--sm" data-load type="button">Muat rekap</button>
+              </div>
+            </div>
+          </div>
+          <div class="embed__note">Sumber: Google Sheets — rekap per bulan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabel contoh rekap -->
+    <div class="section-head" style="margin-top:56px">
+      <span class="eyebrow">Contoh Format</span>
+      <h2>Format Rekap Absensi Bulanan</h2>
+      <p>Gunakan format berikut agar rekap mudah dibaca pimpinan sekolah.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>No</th><th>Nama</th><th>Jabatan</th><th>Hadir</th><th>Izin</th><th>Sakit</th><th>Cuti</th><th>Tanpa Ket.</th><th>% Kehadiran</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Nama Guru 1</td><td>Guru Kelas 1</td><td>22</td><td>1</td><td>0</td><td>0</td><td>0</td><td><span class="badge badge--hijau">96%</span></td></tr>
+          <tr><td>2</td><td>Nama Guru 2</td><td>Guru Kelas 2</td><td>21</td><td>0</td><td>1</td><td>1</td><td>0</td><td><span class="badge badge--hijau">91%</span></td></tr>
+          <tr><td>3</td><td>Nama Guru 3</td><td>Guru Kelas 3</td><td>20</td><td>2</td><td>0</td><td>0</td><td>1</td><td><span class="badge badge--kuning">87%</span></td></tr>
+          <tr><td>4</td><td>Nama Pegawai 1</td><td>Kepala TU</td><td>23</td><td>0</td><td>0</td><td>0</td><td>0</td><td><span class="badge badge--hijau">100%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Arsip -->
+    <div class="section-head" style="margin-top:56px">
+      <span class="eyebrow">Arsip</span>
+      <h2>Arsip Laporan Harian</h2>
+      <p>Dokumen PDF absensi harian yang dapat diunduh.</p>
+    </div>
+
+    <div class="grid grid--3">
+      <article class="card card--hover reveal"><div class="card__body">
+        <span class="badge badge--abu">PDF</span>
+        <h3 style="margin-top:10px;font-size:1.05rem">Rekap April 2025</h3>
+        <p class="small muted">Rekap absensi bulanan (dokumen dari situs lama).</p>
+        <a class="btn btn--ghost btn--sm" data-link="rekapAprPdf">Buka dokumen</a>
+      </div></article>
+      <article class="card card--hover reveal"><div class="card__body">
+        <span class="badge badge--abu">PDF</span>
+        <h3 style="margin-top:10px;font-size:1.05rem">Laporan 9 Mei 2025</h3>
+        <p class="small muted">Laporan absensi harian.</p>
+        <a class="btn btn--ghost btn--sm" data-link="pdf9mei">Buka dokumen</a>
+      </div></article>
+      <article class="card card--hover reveal"><div class="card__body">
+        <span class="badge badge--abu">PDF</span>
+        <h3 style="margin-top:10px;font-size:1.05rem">Laporan 8 Mei 2025</h3>
+        <p class="small muted">Laporan absensi harian.</p>
+        <a class="btn btn--ghost btn--sm" data-link="pdf8mei">Buka dokumen</a>
+      </div></article>
+    </div>
+
+    <div class="card reveal" style="margin-top:34px;border-left:4px solid var(--merah)">
+      <div class="card__body">
+        <h3 style="font-size:1rem">Catatan untuk editor</h3>
+        <p class="small muted" style="margin:0">
+          Halaman ini menggantikan situs <em>absensisdn22pb</em>. Semua data absensi tetap tersimpan di
+          Google Forms/Sheets Anda — website baru hanya menampilkannya lewat embed, sehingga tidak ada data yang hilang.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <svg class="brand__logo" viewBox="0 0 48 48"><rect width="48" height="48" rx="14" fill="#c1121f" /><path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" /><path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" /></svg>
+          <span class="brand__text"><span class="brand__name">SDN 22 Pontianak Barat</span><span class="brand__sub" style="color:#ff8a95">Website Resmi</span></span>
+        </div>
+        <p style="font-size:.9rem" data-cfg="sekolah.motto">Motto</p>
+        <p style="font-size:.85rem;opacity:.8" data-cfg="sekolah.alamat">Alamat</p>
+      </div>
+      <div>
+        <h4>Navigasi</h4>
+        <ul class="footer__list">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profil.html">Profil Sekolah</a></li>
+          <li><a href="guru-pegawai.html">Guru &amp; Pegawai</a></li>
+          <li><a href="absensi.html">Absensi</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Layanan</h4>
+        <ul class="footer__list">
+          <li><a data-link="spmb">SPMB Online</a></li>
+          <li><a data-link="erapor">Portal E-Rapor</a></li>
+          <li><a data-link="pmm">Platform Merdeka Mengajar</a></li>
+          <li><a data-link="situsAbsensi">Situs Absensi Lama</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <ul class="footer__list">
+          <li data-cfg="sekolah.telepon">Telepon</li>
+          <li><a data-cfg="sekolah.email" href="#">Email</a></li>
+          <li data-cfg="sekolah.jamLayanan">Jam layanan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> SD Negeri 22 Pontianak Barat.</span>
+      <span>Editor: <span data-cfg="sekolah.editor">Editor</span></span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Kembali ke atas"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 14 6-6 6 6"/></svg></button>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
