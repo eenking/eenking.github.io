@@ -1,4 +1,4 @@
-# eenking.gihub.io
+# eenking.github.io
 # Panduan Membangun Ulang di Google Sites
 ### SDN 22 Pontianak Barat — versi id.belajar (gratis)
 
