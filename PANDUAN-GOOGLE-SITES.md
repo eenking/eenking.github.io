@@ -51,8 +51,8 @@ Beranda                  (halaman utama)
 │   ├─ Guru
 │   └─ Pegawai
 ├─ Absensi
-│   ├─ Absen Hari Ini
-│   └─ Rekap & Arsip
+│   ├─ Rekap Tahun Berjalan
+│   └─ Rekap Tahun Sebelumnya
 └─ Galeri
 ```
 
@@ -91,9 +91,10 @@ Untuk menambah bagian baru: arahkan kursor ke bawah bagian terakhir → klik **+
 | # | Bagian | Isi | Tata letak |
 |---|---|---|---|
 | 1 | Banner | Judul + subjudul + tombol **SPMB Online** & **Profil Sekolah** | Banner besar |
-| 2 | Layanan | 4 kartu: **SPMB**, **E-Rapor**, **Absensi**, **PMM** (masing-masing tombol ke URL) | 4 kolom |
+| 2 | Akses Cepat | 3 kartu: **SPMB**, **PMM**, **E-Rapor SD** (masing-masing bertaut) | 3 kolom |
+| 2b | Layanan | 4 kartu: **Dapodik**, **SPMB Online**, **E-Rapor SD**, **PMM** | 4 kolom |
 | 3 | Sambutan | Foto kepala sekolah + teks sambutan + nama & NIP | 2 kolom (gambar kiri) |
-| 4 | Statistik | 4 kotak angka: Peserta Didik, Guru & Pegawai, Rombel, Prestasi | 4 kolom |
+| 4 | Statistik | 4 kotak angka: Peserta Didik (392), Guru & Pegawai (23), Rombel (14), Tingkat Kelas (6) | 4 kolom |
 | 5 | Agenda | Sematan **Google Calendar** + 2–3 kartu pengumuman | 2 kolom |
 | 6 | Galeri | **Korsel** gambar (6 foto) + tombol *Lihat semua galeri* | 1 kolom |
 | 7 | Video | Sematan **YouTube** video profil | 1 kolom |
@@ -115,10 +116,16 @@ latar `#FFF8F8`, lalu tambahkan tombol kecil di bawah teks.
    Tabel: **Sisipkan → Tabel** (2 kolom).
 2. **Visi & Misi**: bagian 1 kolom berisi 3 kotak teks berjudul *Visi*, *Misi*, *Tujuan*.
    Google Sites tidak punya akordeon — gunakan sub-halaman *Visi & Misi* bila isinya panjang.
-3. **Struktur Organisasi**: **Sisipkan → Gambar** bagan (buat di Canva/Slides, ekspor PNG),
-   atau **Sisipkan → Drive** bila bagan berupa Slides/PDF.
-4. **Fasilitas**: bagian 3 kolom × 2 baris, tiap kolom: ikon/emoji + judul + 1 kalimat.
-5. **Prestasi**: **Sisipkan → Tabel** (Tahun, Prestasi, Tingkat, Keterangan).
+3. **Struktur Organisasi**: Canva **tidak bisa** disematkan. Buat tombol
+   **Buka Bagan Struktur (Canva)** → tempel `https://canva.link/0srchjtd0mdni95`.
+   Bila ingin tampil langsung di halaman, ekspor bagan Canva ke PNG lalu
+   **Sisipkan → Gambar**.
+4. **Data Siswa**: **Sisipkan → Spreadsheet** → tempel
+   `https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/edit`
+   → pilih sheet **JUMLAH SISWA**. Angka ringkas: 392 siswa (206 laki-laki, 186 perempuan), 14 rombel.
+5. **Fasilitas**: bagian 3 kolom × 2 baris, tiap kolom: ikon/emoji + judul + 1 kalimat.
+6. **Prestasi & Ekstrakurikuler**: **Sisipkan → Tabel** (Kegiatan, Bidang, Keterangan)
+   atau tautkan ke halaman **Galeri** untuk video kegiatan.
 
 ---
 
@@ -140,18 +147,22 @@ Di halaman induk **Guru & Pegawai**, buat 3 tombol besar menuju sub-halaman ters
 
 ## 7. Halaman Absensi
 
-1. **Absen Hari Ini**
-   - **Sisipkan → Formulir** → pilih form absensi (atau tempel kode iframe, bagian 9).
-   - Tambahkan kotak catatan: "Isi absen sebelum pukul 07.15 WIB".
-2. **Rekap & Arsip**
-   - **Sisipkan → Drive** → pilih file PDF rekap terbaru (atau sematkan lewat iframe).
-   - Daftar arsip: **Sisipkan → Daftar isi** atau tombol-tombol menuju file PDF.
-3. **Tombol ke situs lama** (opsional, masa transisi):
-   *"Buka arsip absensi lama"* → `https://sites.google.com/admin.sd.belajar.id/absensisdn22pb/halaman-muka`
+Halaman ini **hanya menampilkan rekap bulanan** — tidak ada formulir, dan **tidak
+menampilkan jam masuk/pulang**. Hanya jumlah: Hadir, Izin, Sakit, Cuti, Tanpa Keterangan.
 
-**Penting:** bila pengunjung situs bukan warga sekolah, buka form → **Setelan →
-Respons → Siapa yang dapat merespons: Siapa saja yang memiliki link** (jangan "Dibatasi").
-Jika admin sekolah melarang, form hanya bisa diisi setelah login akun sekolah.
+1. **Rekap Tahun Berjalan**
+   - **Sisipkan → Spreadsheet** → pilih spreadsheet presensi → sheet rekap tahun ini.
+   - Tambahkan teks pengantar: *“Rekap jumlah kehadiran guru dan tenaga kependidikan.”*
+2. **Rekap Tahun Sebelumnya**
+   - Ulangi langkah di atas dengan sheet arsip tahun lalu (sebagai pembanding).
+3. **Keterangan kolom** (kotak teks 3 kolom): arti Hadir, Izin & Sakit, Tanpa Keterangan.
+4. **Jangan** menautkan situs absensi lama, PDF lama, atau formulir apa pun.
+
+**Penting:** spreadsheet rekap harus dibagikan **Siapa saja yang memiliki link (Lihat)**
+atau dipublikasikan (**File → Bagikan → Publikasikan ke web**). Jangan beri akses edit.
+
+> Absensi **tidak** ditampilkan di “Akses Cepat” maupun di bagian “Layanan”.
+> Halaman ini hanya bisa dibuka dari menu navigasi.
 
 ---
 
@@ -214,77 +225,82 @@ Cara dapat URL: spreadsheet → **File → Bagikan → Publikasikan ke web → H
 ```
 Cara dapat: **Setelan kalender → Integrasikan kalender → salin isi `src="..."`**.
 
-**G. Dokumen PDF Drive (rekap yang sudah ada)**
+**G. Foto/video kegiatan dari Google Drive**
 ```html
-<iframe src="https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/preview"
+<iframe src="https://drive.google.com/file/d/GANTI_ID_FILE/preview"
         width="100%" height="640" frameborder="0" allow="autoplay"></iframe>
 ```
+Untuk **foto**, cukup tempel tautan Drive pada **Sisipkan → Gambar → Berdasarkan URL**
+(pola `https://drive.google.com/file/d/ID/view`), atau unggah langsung file fotonya.
+
+**H. Sematan seluruh halaman website (opsional)**
+Bila ingin menampilkan situs HTML ini di dalam Google Sites, gunakan
+**Sisipkan → Sematkan → Kode sematan** dengan `<iframe>` ke URL GitHub Pages.
+Google Sites sendiri **tidak bisa** disematkan, tetapi situs HTML statis bisa.
 
 ---
 
-## 10. Kalau belum punya Google Form absensi
+## 10. Menyiapkan spreadsheet rekap absensi
 
-Buat di <https://forms.new> (akun sekolah), judul **"Absensi Guru & Pegawai SDN 22 Pontianak Barat"**.
+Karena halaman absensi **tidak memakai formulir**, rekap cukup disusun di satu spreadsheet.
 
-| No | Pertanyaan | Jenis | Wajib |
-|---|---|---|---|
-| 1 | Nama lengkap | Jawaban singkat | Ya |
-| 2 | NIP / ID Pegawai | Jawaban singkat | Tidak |
-| 3 | Jabatan | Dropdown (Kepala Sekolah, Guru Kelas, Guru Mapel, Tata Usaha, Pegawai) | Ya |
-| 4 | Jenis absen | Pilihan ganda (Masuk, Pulang) | Ya |
-| 5 | Tanggal | Tanggal | Ya |
-| 6 | Jam | Waktu | Ya |
-| 7 | Status | Pilihan ganda (Hadir, Izin, Sakit, Cuti, Dinas Luar) | Ya |
-| 8 | Keterangan | Paragraf | Tidak |
-
-Setelan form:
-- **Respons → Kumpulkan alamat email: Terverifikasi** (agar tidak ada entri palsu).
-- **Respons → Siapa yang dapat merespons: Siapa saja yang memiliki link** (untuk pengunjung umum).
-- **Respons → Buat spreadsheet** → dapat sheet otomatis untuk rekap.
+1. Buat spreadsheet **“Absensi SDN 22 Pontianak Barat”** (akun sekolah).
+2. Sheet **Absen Harian** (diisi manual atau impor dari mesin absen), kolom:
+   `Tanggal · Nama · Jabatan · Status` (Hadir/Izin/Sakit/Cuti/Dinas Luar/Tanpa Keterangan).
+3. Sheet **Rekap 2026** dan **Rekap 2025**, kolom:
+   `Nama · Jabatan · Hadir · Izin · Sakit · Cuti · Tanpa Keterangan · % Kehadiran`.
+4. **Jangan** menambahkan kolom jam masuk/pulang pada sheet rekap — halaman hanya menampilkan jumlah.
+5. Bagikan: **File → Bagikan → Publikasikan ke web → HTML** (atau “Siapa saja yang memiliki link · Lihat”).
 
 ---
 
 ## 11. Rekap otomatis di Google Sheets
 
-Anggap sheet respons bernama `Form Responses 1`, kolom: `B` Nama, `E` Tanggal, `H` Status.
+Anggap sheet harian bernama `Absen Harian`, kolom: `A` Tanggal, `B` Nama, `D` Status.
 
-Buat sheet **Rekap**, lalu:
+Buat sheet **Rekap 2026**, lalu:
 
 ```
 A2: Nama guru (daftar nama)
-B2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Hadir";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-C2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Izin";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-D2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Sakit";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-E2: =COUNTIFS('Form Responses 1'!$B:$B;$A2;'Form Responses 1'!$H:$H;"Cuti";TEXT('Form Responses 1'!$E:$E;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-F2: =IFERROR(B2/(B2+C2+D2+E2);0)      ← format sebagai persen
+B2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Hadir";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
+C2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Izin";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
+D2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Sakit";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
+E2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Cuti";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
+F2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Tanpa Keterangan";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
+G2: =IFERROR(B2/(B2+C2+D2+E2+F2);0)      ← format sebagai persen
 ```
 
-Tarik rumus ke bawah, lalu **Publikasikan ke web** sheet `Rekap` dan sematkan
-ke halaman **Absensi → Rekap** (kode E di atas).
+Tarik rumus ke bawah, lalu **Publikasikan ke web** sheet `Rekap 2026` dan sematkan
+ke halaman **Absensi → Rekap Tahun Berjalan** (kode E di bagian 9).
+Untuk tahun sebelumnya, duplikat sheet dan ganti `TEXT(TODAY();"YYYY-MM")` menjadi `"2025-*"`.
 
 > Jika regional sheet memakai koma, ganti `;` menjadi `,` pada rumus.
 
 ---
 
-## 12. Aset yang sudah ditemukan (pakai ulang, tidak perlu bikin baru)
+## 12. Aset resmi terbaru (pakai ini, jangan tautkan yang lama)
 
 | Aset | URL |
 |---|---|
+| SPMB Kota Pontianak (pendaftaran) | `https://spmb.pontianak.go.id/` |
+| Aktivasi Token SPMB siswa | `https://siswa.spmb.id/pontianak/login` |
+| E-Rapor SD (tautan resmi, berubah-ubah) | `https://ditsd.kemendikdasmen.go.id/s/erapor2025` |
+| PMM | `https://guru.kemendikdasmen.go.id/` |
+| Dapodik | `https://dapo.kemendikdasmen.go.id/` |
 | Kanal YouTube sekolah | `https://www.youtube.com/@sdn22pontianakbarat` |
-| Rekap absensi April 2025 (PDF) | `https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/view` |
-| Laporan absensi 9 Mei 2025 (PDF) | `https://drive.google.com/file/d/1btHzKuWdARIcddXP7SqajOY7cuNNbW5y/view` |
-| Laporan absensi 8 Mei 2025 (PDF) | `https://drive.google.com/file/d/1RiaKkm0gNeCRpCJAwPuy4W3B1yPWefrN/view` |
-| Portal PMM | `https://guru.kemdikbud.go.id/` |
-| Situs lama 1 (Beranda, Profil, Galeri, SPMB) | `https://sites.google.com/admin.sd.belajar.id/sdn-22-pontianak-barat/beranda` |
-| Situs lama 2 (Absensi) | `https://sites.google.com/admin.sd.belajar.id/absensisdn22pb/halaman-muka` |
-| Situs lama 3 (Login, Profil, Berita, Lokasi) | `https://sites.google.com/admin.sd.belajar.id/sdn22pontianakbarat/loginsdn22pb` |
-| Situs lama 4 (Guru & Pegawai) | `https://sites.google.com/admin.sd.belajar.id/gurudanpegawai/kepala-sekolah` |
+| Instagram | `https://www.instagram.com/sdn22ponbar` |
+| Facebook (akun) | `https://www.facebook.com/sdn22ponbar/` |
+| Facebook (halaman) | `https://www.facebook.com/sdn22pontianakbarat/` |
+| TikTok | `https://www.tiktok.com/@esdeenduaduaponba` |
+| Logo sekolah (Drive) | `https://drive.google.com/file/d/1qIecAxdkPr3Aswl0EKl4QcpUTXXmB_S0/view` |
+| Spreadsheet jumlah siswa (sheet `JUMLAH SISWA`) | `https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/edit` |
+| Spreadsheet data personil | `https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/edit` |
+| Bagan struktur organisasi (Canva) | `https://canva.link/0srchjtd0mdni95` |
+| Kalender Pendidikan (Apps Script) | `https://script.google.com/macros/s/AKfycbw6eN0bod7b-YxijMDdnsUDeDPeT_GZJxMUirdANQUEfKbd_uP_eeFpDL7o_UZJnK8o/exec` |
+| Kalender Sekolah (Apps Script) | `https://script.google.com/macros/s/AKfycbyWmZ3a3KKgdbVXB1X582k3jYhOC5c0mElSMKKn_9oRzSossNw8DM-8_mQLLtd82vQs/exec` |
 
-**Peta halaman situs lama 3** (untuk memastikan tidak ada yang terlewat):
-`/home` · `/profile/logo-sekolah` · `/profile/visi-misi` ·
-`/profile/struktur-organisasi-sekolah` · `/berita/prestasi-akademik` ·
-`/berita/prestasi-non-akademik` · `/berita/bukti-video-kegiatan` ·
-`/berita/kantin-sehat` · `/lokasi`
+**Tautan lama yang sudah dihapus** (jangan dipakai lagi): keempat situs Google Sites lama
+dan tiga PDF rekap absensi lama. Semua datanya sudah digantikan halaman rekap baru.
 
 ---
 
@@ -295,12 +311,12 @@ ke halaman **Absensi → Rekap** (kode E di atas).
    atau minta admin mengizinkan publikasi.
 2. Klik **Publikasikan** → konfirmasi.
 3. Uji di **jendela privat/incognito** (tanpa login): semua halaman, semua embed,
-   form bisa dibuka.
+   rekap absensi tampil, video bisa diputar.
 4. Salin tautan pendek (bit.ly) untuk dibagikan ke orang tua siswa.
 5. Setelah situs baru stabil ±1 bulan:
    - Situs lama 1: ubah beranda menjadi "Situs telah pindah ke [tautan baru]".
-   - Situs lama 2, 3, 4: arsipkan (jangan langsung dihapus — masih menyimpan PDF lama).
-6. Unduh salinan PDF/arsip penting dari Drive ke perangkat sekolah sebagai cadangan.
+   - Situs lama 2, 3, 4: arsipkan. Jangan menautkan kembali tautan lama dari situs baru.
+6. Unduh salinan arsip penting dari Drive ke perangkat sekolah sebagai cadangan.
 
 ---
 
@@ -310,11 +326,12 @@ ke halaman **Absensi → Rekap** (kode E di atas).
 - [ ] Warna `#C1121F` + font Plus Jakarta Sans terpasang
 - [ ] Banner memakai foto asli sekolah (bukan ilustrasi)
 - [ ] Nama, NIP, foto kepala sekolah & guru sudah benar
-- [ ] Peta menunjuk lokasi benar (Gg. Selamat 3 No. 46, Sungai Jawi Dalam)
-- [ ] Form absensi bisa diisi dari incognito
-- [ ] Rekap Sheets tampil (mode publikasi, bukan edit)
-- [ ] Video YouTube bisa diputar
-- [ ] Tautan SPMB / E-Rapor / PMM tidak ada yang kosong
+- [ ] Peta menunjuk lokasi benar (Jl. H. Rais A. Rahman, Gg. Selamat III, Sungai Jawi Dalam)
+- [ ] Rekap absensi tampil (tahun berjalan & tahun sebelumnya), tanpa jam masuk/pulang
+- [ ] Absensi **tidak** muncul di “Akses Cepat” maupun “Layanan”
+- [ ] Video YouTube bisa diputar & foto galeri tampil
+- [ ] Tautan SPMB / Token / E-Rapor / PMM / Dapodik tidak ada yang kosong
+- [ ] Tidak ada tautan situs lama/PDF lama yang masih aktif
 - [ ] Diuji di HP (menu & tabel tidak terpotong)
 - [ ] Tautan situs baru dibagikan; situs lama diberi pengumuman pindah
 

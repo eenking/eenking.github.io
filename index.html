@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SDN 22 Pontianak Barat — Website Resmi Sekolah</title>
-<meta name="description" content="Website resmi SD Negeri 22 Pontianak Barat: profil sekolah, guru & pegawai, absensi digital, galeri kegiatan, dan informasi SPMB." />
+<meta name="description" content="Website resmi SD Negeri 22 Pontianak Barat: profil sekolah, guru & pegawai, rekap absensi, agenda pendidikan, galeri kegiatan, dan informasi SPMB Kota Pontianak." />
 <meta name="theme-color" content="#c1121f" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,18 +14,11 @@
 </head>
 <body data-page="beranda">
 
-<a class="skip-link" href="#main" style="position:absolute;left:-9999px">Lewati ke konten</a>
-
 <!-- ================= HEADER ================= -->
 <header class="header">
   <div class="container header__bar">
     <a class="brand" href="index.html">
-      <svg class="brand__logo" viewBox="0 0 48 48" role="img" aria-label="Logo sekolah">
-        <rect width="48" height="48" rx="14" fill="#c1121f" />
-        <path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" />
-        <path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
-        <circle cx="34.5" cy="22" r="2" fill="#fff" />
-      </svg>
+      <img class="brand__logo" data-img="sekolah.logo" src="assets/img/gedung.svg" alt="Logo SDN 22 Pontianak Barat" />
       <span class="brand__text">
         <span class="brand__name">SDN 22 Pontianak Barat</span>
         <span class="brand__sub">Website Resmi</span>
@@ -60,17 +53,17 @@
       <h1 class="hero__title">Selamat Datang di <em>SDN 22 Pontianak Barat</em></h1>
       <p class="hero__desc">
         Membangun generasi cerdas, berkarakter, dan berbudaya. Satu pintu informasi untuk
-        profil sekolah, data guru &amp; pegawai, absensi digital, hingga galeri kegiatan siswa.
+        profil sekolah, data guru &amp; pegawai, rekap absensi, kalender pendidikan, dan galeri kegiatan.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="profil.html">Jelajahi Profil Sekolah</a>
-        <a class="btn btn--ghost" href="absensi.html">Absensi Digital</a>
+        <a class="btn btn--primary" data-link="spmb">Pendaftaran SPMB</a>
+        <a class="btn btn--ghost" data-link="spmbToken">Aktivasi Token SPMB</a>
       </div>
       <div class="hero__meta">
-        <div class="hero__meta-item"><strong><span data-count="420">0</span>+</strong><span>Peserta Didik</span></div>
-        <div class="hero__meta-item"><strong><span data-count="28">0</span></strong><span>Guru &amp; Pegawai</span></div>
-        <div class="hero__meta-item"><strong><span data-count="14">0</span></strong><span>Rombongan Belajar</span></div>
-        <div class="hero__meta-item"><strong><span data-count="35">0</span>+</strong><span>Prestasi</span></div>
+        <div class="hero__meta-item"><strong><span data-count="siswa">0</span></strong><span>Peserta Didik</span></div>
+        <div class="hero__meta-item"><strong><span data-count="personil">0</span></strong><span>Guru &amp; Pegawai</span></div>
+        <div class="hero__meta-item"><strong><span data-count="rombel">0</span></strong><span>Rombongan Belajar</span></div>
+        <div class="hero__meta-item"><strong><span data-count="tingkat">0</span></strong><span>Tingkat Kelas</span></div>
       </div>
     </div>
 
@@ -82,69 +75,70 @@
       <div class="hero__card-body">
         <ul class="mini-list">
           <li>
-            <span class="mini-list__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
-            </span>
-            <span><span class="mini-list__t">SPMB — Pendaftaran Siswa Baru</span><span class="mini-list__s">Pendaftaran peserta didik baru secara online</span></span>
+            <a class="mini-list__link" data-link="spmb">
+              <span class="mini-list__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+              </span>
+              <span><span class="mini-list__t">SPMB Kota Pontianak</span><span class="mini-list__s">Pendaftaran peserta didik baru</span></span>
+            </a>
           </li>
           <li>
-            <span class="mini-list__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-            </span>
-            <span><span class="mini-list__t">Portal E-Rapor</span><span class="mini-list__s">Hasil belajar dan rapor digital siswa</span></span>
+            <a class="mini-list__link" data-link="pmm">
+              <span class="mini-list__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+              </span>
+              <span><span class="mini-list__t">PMM — Platform Merdeka Mengajar</span><span class="mini-list__s">Pengembangan kompetensi guru</span></span>
+            </a>
           </li>
           <li>
-            <span class="mini-list__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
-            </span>
-            <span><span class="mini-list__t">Absensi Masuk &amp; Pulang</span><span class="mini-list__s">Presensi guru dan pegawai setiap hari</span></span>
-          </li>
-          <li>
-            <span class="mini-list__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-            </span>
-            <span><span class="mini-list__t">PMM — Platform Merdeka Mengajar</span><span class="mini-list__s">Pengembangan kompetensi guru</span></span>
+            <a class="mini-list__link" data-link="erapor">
+              <span class="mini-list__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
+              </span>
+              <span><span class="mini-list__t">E-Rapor SD</span><span class="mini-list__s">Aplikasi rapor resmi Kemendikdasmen</span></span>
+            </a>
           </li>
         </ul>
-        <div style="margin-top:18px">
-          <a class="btn btn--primary btn--block btn--sm" href="absensi.html">Masuk ke Absensi</a>
+        <div style="margin-top:18px;display:grid;gap:10px">
+          <a class="btn btn--primary btn--block btn--sm" data-link="spmb">Masuk SPMB Pontianak</a>
+          <a class="btn btn--ghost btn--block btn--sm" data-link="spmbToken">Aktivasi Token Siswa</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= QUICK LINKS ================= -->
+<!-- ================= LAYANAN ================= -->
 <section class="section section--tight">
   <div class="container">
     <div class="quick reveal">
+      <a class="quick__item" data-link="dapodik">
+        <span class="quick__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        </span>
+        <span class="quick__t">Dapodik</span>
+        <span class="quick__s">Data Pokok Pendidikan Kemendikdasmen</span>
+      </a>
       <a class="quick__item" data-link="spmb">
         <span class="quick__icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </span>
-        <span class="quick__t">Pendaftaran SPMB</span>
-        <span class="quick__s">Daftar peserta didik baru tahun pelajaran ini</span>
+        <span class="quick__t">SPMB Online</span>
+        <span class="quick__s">Pendaftaran siswa baru Kota Pontianak</span>
       </a>
       <a class="quick__item" data-link="erapor">
         <span class="quick__icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
         </span>
-        <span class="quick__t">Portal E-Rapor</span>
-        <span class="quick__s">Lihat rapor dan capaian pembelajaran</span>
-      </a>
-      <a class="quick__item" href="absensi.html">
-        <span class="quick__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        </span>
-        <span class="quick__t">Absensi Digital</span>
-        <span class="quick__s">Presensi harian &amp; rekap bulanan</span>
+        <span class="quick__t">E-Rapor SD</span>
+        <span class="quick__s">Unduh aplikasi &amp; panduan e-Rapor</span>
       </a>
       <a class="quick__item" data-link="pmm">
         <span class="quick__icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
         </span>
-        <span class="quick__t">Platform Merdeka Mengajar</span>
-        <span class="quick__s">Belajar, berkarya, dan berbagi praktik baik</span>
+        <span class="quick__t">PMM</span>
+        <span class="quick__s">Platform Merdeka Mengajar</span>
       </a>
     </div>
   </div>
@@ -154,8 +148,8 @@
 <section class="section section--abu">
   <div class="container">
     <div class="split reveal">
-      <div class="principal__photo" aria-label="Foto kepala sekolah">
-        Foto<br />Kepala Sekolah<br /><span style="font-weight:600;font-size:.78rem">(ganti dengan foto asli)</span>
+      <div class="principal__photo principal__photo--img" aria-label="Foto kepala sekolah">
+        <img data-img="sekolah.fotoKepsek" src="assets/img/gedung.svg" alt="Kepala SD Negeri 22 Pontianak Barat" />
       </div>
       <div>
         <span class="eyebrow">Sambutan</span>
@@ -170,7 +164,7 @@
           dengan dukungan guru-guru yang terus belajar. Semoga kehadiran layanan digital ini
           memudahkan seluruh warga sekolah.
         </p>
-        <p style="margin-bottom:4px"><strong data-cfg="sekolah.kepalaSekolah">Nama Kepala Sekolah</strong></p>
+        <p style="margin-bottom:4px"><strong data-cfg="sekolah.kepalaSekolah">Amalia Lamuri, S.Pd.</strong></p>
         <p class="small" style="margin:0">Kepala SD Negeri 22 Pontianak Barat</p>
         <div style="margin-top:18px"><a class="btn btn--ghost btn--sm" href="guru-pegawai.html">Lihat Profil Guru &amp; Pegawai</a></div>
       </div>
@@ -184,7 +178,7 @@
     <div class="section-head section-head--center reveal">
       <span class="eyebrow">Tentang Kami</span>
       <h2>Sekolah Dasar Negeri di Jantung Pontianak Barat</h2>
-      <p>Empat pilar layanan dalam satu website: profil sekolah, data pendidik, absensi digital, dan dokumentasi kegiatan.</p>
+      <p>Profil sekolah, data pendidik, kalender pendidikan, dan dokumentasi kegiatan dalam satu website.</p>
     </div>
 
     <div class="grid grid--3">
@@ -194,7 +188,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
           </div>
           <h3>Profil &amp; Visi Misi</h3>
-          <p class="muted">Sejarah singkat, visi, misi, struktur organisasi, serta fasilitas sekolah.</p>
+          <p class="muted">Identitas sekolah, visi, misi, struktur organisasi, serta fasilitas.</p>
           <a class="btn btn--ghost btn--sm" href="profil.html">Buka Profil</a>
         </div>
       </article>
@@ -205,7 +199,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
           </div>
           <h3>Guru &amp; Pegawai</h3>
-          <p class="muted">Direktori pendidik dan tenaga kependidikan, lengkap dengan bidang tugasnya.</p>
+          <p class="muted"><span data-count="personil">0</span> pendidik dan tenaga kependidikan beserta bidang tugasnya.</p>
           <a class="btn btn--ghost btn--sm" href="guru-pegawai.html">Lihat Direktori</a>
         </div>
       </article>
@@ -213,11 +207,11 @@
       <article class="card card--hover reveal">
         <div class="card__body">
           <div class="quick__icon" style="margin-bottom:14px" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
           </div>
-          <h3>Absensi Digital</h3>
-          <p class="muted">Absen masuk dan pulang, rekap bulanan, serta arsip laporan harian dalam PDF.</p>
-          <a class="btn btn--ghost btn--sm" href="absensi.html">Buka Absensi</a>
+          <h3>Galeri Kegiatan</h3>
+          <p class="muted">Foto dan video kegiatan sekolah yang bisa langsung diputar.</p>
+          <a class="btn btn--ghost btn--sm" href="galeri.html">Buka Galeri</a>
         </div>
       </article>
     </div>
@@ -230,25 +224,50 @@
     <div class="section-head reveal">
       <span class="eyebrow">Informasi</span>
       <h2>Agenda &amp; Pengumuman Sekolah</h2>
-      <p>Kalender kegiatan dan pengumuman resmi terbaru.</p>
+      <p>Kalender pendidikan dan kalender akademik sekolah, serta pengumuman resmi terbaru.</p>
     </div>
 
-    <div class="split reveal">
-      <div>
-        <div class="embed embed--short" data-embed="kalender" data-title="Kalender kegiatan sekolah">
-          <div class="embed__inner">
-            <div class="embed__placeholder">
-              <div>
-                <div class="embed__placeholder-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <div class="split reveal" style="align-items:start">
+      <div data-tabs>
+        <div class="tabs" role="tablist" aria-label="Jenis kalender">
+          <button class="tab is-active" data-tab="kaldik" role="tab" aria-selected="true">Kalender Pendidikan</button>
+          <button class="tab" data-tab="kalak" role="tab" aria-selected="false">Kalender Sekolah</button>
+        </div>
+
+        <div class="tab-panel" data-panel="kaldik">
+          <div class="embed embed--tall" data-embed="kalenderPendidikan" data-title="Kalender Pendidikan">
+            <div class="embed__inner">
+              <div class="embed__placeholder">
+                <div>
+                  <div class="embed__placeholder-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  </div>
+                  <h4>Kalender Pendidikan</h4>
+                  <p>Kalender pendidikan tahun pelajaran berjalan.</p>
+                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
                 </div>
-                <h4>Kalender Kegiatan</h4>
-                <p>Embed Google Calendar akan tampil di sini.</p>
-                <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
               </div>
             </div>
+            <div class="embed__note">Sumber: Kalender Pendidikan SDN 22 Pontianak Barat</div>
           </div>
-          <div class="embed__note">Sumber: Google Calendar sekolah</div>
+        </div>
+
+        <div class="tab-panel" data-panel="kalak" hidden>
+          <div class="embed embed--tall" data-embed="kalenderSekolah" data-title="Kalender Akademik Sekolah">
+            <div class="embed__inner">
+              <div class="embed__placeholder">
+                <div>
+                  <div class="embed__placeholder-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  </div>
+                  <h4>Kalender Sekolah</h4>
+                  <p>Agenda kegiatan sekolah.</p>
+                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
+                </div>
+              </div>
+            </div>
+            <div class="embed__note">Sumber: Kalender Akademik SDN 22 Pontianak Barat</div>
+          </div>
         </div>
       </div>
 
@@ -256,17 +275,21 @@
         <div class="grid" style="gap:14px">
           <article class="card reveal">
             <div class="card__body">
-              <span class="badge badge--merah">Pengumuman</span>
+              <span class="badge badge--merah">SPMB</span>
               <h3 style="margin-top:10px">Penerimaan Peserta Didik Baru</h3>
-              <p class="muted small">Pendaftaran SPMB dibuka sesuai jadwal Dinas Pendidikan. Siapkan akta kelahiran, kartu keluarga, dan foto.</p>
-              <a class="btn btn--ghost btn--sm" data-link="spmb">Buka halaman SPMB</a>
+              <p class="muted small">Pendaftaran SPMB Kota Pontianak dibuka sesuai jadwal Dinas Pendidikan. Siapkan akta kelahiran, kartu keluarga, dan foto.</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <a class="btn btn--primary btn--sm" data-link="spmb">Daftar SPMB</a>
+                <a class="btn btn--ghost btn--sm" data-link="spmbToken">Aktivasi Token</a>
+              </div>
             </div>
           </article>
           <article class="card reveal">
             <div class="card__body">
               <span class="badge badge--hijau">Akademik</span>
               <h3 style="margin-top:10px">Jadwal Penilaian Sumatif</h3>
-              <p class="muted small">Jadwal penilaian akhir semester diumumkan melalui wali kelas dan papan informasi sekolah.</p>
+              <p class="muted small">Jadwal penilaian akhir semester diumumkan melalui wali kelas dan kalender pendidikan sekolah.</p>
+              <a class="btn btn--ghost btn--sm" data-link="erapor">Aplikasi E-Rapor</a>
             </div>
           </article>
           <article class="card reveal">
@@ -283,37 +306,16 @@
   </div>
 </section>
 
-<!-- ================= GALERI PREVIEW ================= -->
+<!-- ================= GALERI ================= -->
 <section class="section">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Dokumentasi</span>
       <h2>Galeri Kegiatan Sekolah</h2>
-      <p>Momen pembelajaran, kegiatan siswa, dan fasilitas sekolah.</p>
+      <p>Klik video untuk langsung memutar, klik foto untuk memperbesar.</p>
     </div>
 
-    <div class="gallery reveal">
-      <button class="gallery__item gallery__item--wide" data-lightbox="assets/img/gedung.svg" data-caption="Gedung SD Negeri 22 Pontianak Barat">
-        <img src="assets/img/gedung.svg" alt="Gedung sekolah" loading="lazy" />
-        <span class="gallery__cap">Gedung &amp; Halaman Sekolah</span>
-      </button>
-      <button class="gallery__item" data-lightbox="assets/img/upacara.svg" data-caption="Upacara bendera">
-        <img src="assets/img/upacara.svg" alt="Upacara bendera" loading="lazy" />
-        <span class="gallery__cap">Upacara &amp; Pembiasaan Pagi</span>
-      </button>
-      <button class="gallery__item" data-lightbox="assets/img/belajar.svg" data-caption="Pembelajaran di kelas">
-        <img src="assets/img/belajar.svg" alt="Pembelajaran di kelas" loading="lazy" />
-        <span class="gallery__cap">Kegiatan Belajar di Kelas</span>
-      </button>
-      <button class="gallery__item" data-lightbox="assets/img/kantin.svg" data-caption="Kantin sehat">
-        <img src="assets/img/kantin.svg" alt="Kantin sehat" loading="lazy" />
-        <span class="gallery__cap">Kantin Sehat</span>
-      </button>
-      <button class="gallery__item" data-lightbox="assets/img/ekskul.svg" data-caption="Ekstrakurikuler">
-        <img src="assets/img/ekskul.svg" alt="Ekstrakurikuler" loading="lazy" />
-        <span class="gallery__cap">Ekstrakurikuler</span>
-      </button>
-    </div>
+    <div class="gallery reveal" data-gallery="6"></div>
 
     <div class="center" style="margin-top:26px">
       <a class="btn btn--primary" href="galeri.html">Lihat Semua Galeri</a>
@@ -321,40 +323,13 @@
   </div>
 </section>
 
-<!-- ================= VIDEO ================= -->
-<section class="section section--abu">
-  <div class="container">
-    <div class="section-head section-head--center reveal">
-      <span class="eyebrow">Profil Video</span>
-      <h2>Kenali Sekolah Kami Lebih Dekat</h2>
-      <p>Video profil dan kegiatan SD Negeri 22 Pontianak Barat.</p>
-    </div>
-
-    <div class="embed embed--short reveal" data-embed="youtubeProfil" data-title="Video profil sekolah">
-      <div class="embed__inner">
-        <div class="embed__placeholder">
-          <div>
-            <div class="embed__placeholder-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m10 8 6 4-6 4V8Z"/><rect x="2" y="4" width="20" height="16" rx="4"/></svg>
-            </div>
-            <h4>Video Profil Sekolah</h4>
-            <p>Embed YouTube akan tampil di sini.</p>
-            <button class="btn btn--ghost btn--sm" data-load type="button">Putar video</button>
-          </div>
-        </div>
-      </div>
-      <div class="embed__note">Sumber: kanal YouTube sekolah</div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= LOKASI ================= -->
-<section class="section">
+<section class="section section--abu" id="lokasi">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Kontak</span>
       <h2>Lokasi &amp; Hubungi Kami</h2>
-      <p>Silakan berkunjung atau hubungi tata usaha pada jam layanan.</p>
+      <p>Silakan berkunjung atau hubungi kami melalui WhatsApp pada jam layanan.</p>
     </div>
 
     <div class="split reveal">
@@ -383,7 +358,7 @@
               <span class="mini-list__icon" aria-hidden="true">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
               </span>
-              <span><span class="mini-list__t">Telepon</span><span class="mini-list__s" data-cfg="sekolah.telepon">(0561) 000000</span></span>
+              <span><span class="mini-list__t">WhatsApp</span><span class="mini-list__s" data-cfg="sekolah.telepon">0812-5414-9295</span></span>
             </li>
             <li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--garis)">
               <span class="mini-list__icon" aria-hidden="true">
@@ -391,16 +366,16 @@
               </span>
               <span><span class="mini-list__t">Email</span><span class="mini-list__s" data-cfg="sekolah.email">email@sekolah.sch.id</span></span>
             </li>
-            <li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--garis)">
+            <li style="display:flex;gap:12px;padding:12px 0">
               <span class="mini-list__icon" aria-hidden="true">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
               </span>
-              <span><span class="mini-list__t">Jam Layanan</span><span class="mini-list__s" data-cfg="sekolah.jamLayanan">Senin – Jumat, 07.00 – 14.00 WIB</span></span>
+              <span><span class="mini-list__t">Jam Layanan</span><span class="mini-list__s" data-cfg="sekolah.jamLayanan">Senin – Jumat</span></span>
             </li>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
-            <a class="btn btn--primary btn--sm" data-wa>WhatsApp Tata Usaha</a>
-            <a class="btn btn--ghost btn--sm" href="absensi.html">Absensi Guru</a>
+            <a class="btn btn--primary btn--sm" data-wa>WhatsApp Sekolah</a>
+            <a class="btn btn--ghost btn--sm" href="absensi.html">Rekap Absensi</a>
           </div>
         </div>
       </div>
@@ -413,12 +388,12 @@
   <div class="container">
     <div class="cta reveal">
       <div>
-        <h2>Siap bergabung bersama kami?</h2>
-        <p>Informasi pendaftaran, persyaratan, dan alur SPMB tersedia pada halaman pendaftaran.</p>
+        <h2>Calon peserta didik baru?</h2>
+        <p>Pendaftaran SPMB Kota Pontianak dan aktivasi token siswa dilakukan secara online.</p>
       </div>
       <div class="cta__actions">
         <a class="btn btn--light" data-link="spmb">Daftar SPMB</a>
-        <a class="btn btn--outline-light" href="profil.html">Tentang Sekolah</a>
+        <a class="btn btn--outline-light" data-link="spmbToken">Aktivasi Token</a>
       </div>
     </div>
   </div>
@@ -432,12 +407,7 @@
     <div class="footer__grid">
       <div>
         <div class="footer__brand">
-          <svg class="brand__logo" viewBox="0 0 48 48" role="img" aria-label="Logo sekolah">
-            <rect width="48" height="48" rx="14" fill="#c1121f" />
-            <path d="M24 13 11 19l13 6 13-6-13-6Z" fill="#fff" />
-            <path d="M16 24.5V31c0 2.2 3.6 4 8 4s8-1.8 8-4v-6.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" />
-            <circle cx="34.5" cy="22" r="2" fill="#fff" />
-          </svg>
+          <img class="brand__logo" data-img="sekolah.logo" src="assets/img/gedung.svg" alt="Logo sekolah" />
           <span class="brand__text">
             <span class="brand__name">SDN 22 Pontianak Barat</span>
             <span class="brand__sub" style="color:#ff8a95">Website Resmi</span>
@@ -445,6 +415,7 @@
         </div>
         <p style="font-size:.9rem" data-cfg="sekolah.motto">Motto sekolah</p>
         <p style="font-size:.85rem;opacity:.8" data-cfg="sekolah.alamat">Alamat sekolah</p>
+        <p style="font-size:.82rem;opacity:.7">NPSN <span data-cfg="sekolah.npsn">30105373</span> · NSS <span data-cfg="sekolah.nss">101136004022</span></p>
       </div>
 
       <div>
@@ -453,7 +424,7 @@
           <li><a href="index.html">Beranda</a></li>
           <li><a href="profil.html">Profil Sekolah</a></li>
           <li><a href="guru-pegawai.html">Guru &amp; Pegawai</a></li>
-          <li><a href="absensi.html">Absensi</a></li>
+          <li><a href="absensi.html">Rekap Absensi</a></li>
           <li><a href="galeri.html">Galeri</a></li>
         </ul>
       </div>
@@ -461,29 +432,32 @@
       <div>
         <h4>Layanan</h4>
         <ul class="footer__list">
+          <li><a data-link="dapodik">Dapodik</a></li>
           <li><a data-link="spmb">SPMB Online</a></li>
-          <li><a data-link="erapor">Portal E-Rapor</a></li>
-          <li><a data-link="pmm">Platform Merdeka Mengajar</a></li>
-          <li><a data-link="situsAbsensi">Situs Absensi Lama</a></li>
-          <li><a data-link="situsProfil">Situs Profil Lama</a></li>
+          <li><a data-link="spmbToken">Aktivasi Token SPMB</a></li>
+          <li><a data-link="erapor">E-Rapor SD</a></li>
+          <li><a data-link="pmm">PMM</a></li>
         </ul>
       </div>
 
       <div>
         <h4>Kontak</h4>
         <ul class="footer__list">
-          <li data-cfg="sekolah.telepon">(0561) 000000</li>
-          <li><a data-cfg="sekolah.email" href="#">email@sekolah.sch.id</a></li>
-          <li data-cfg="sekolah.jamLayanan">Jam layanan</li>
+          <li><a href="#" data-wa>WhatsApp <span data-cfg="sekolah.telepon">0812-5414-9295</span></a></li>
+          <li><a data-cfg="sekolah.email" href="#">Email</a></li>
+          <li><span data-cfg="sekolah.jamLayanan">Jam layanan</span></li>
         </ul>
         <div class="social">
-          <a data-link="instagram" aria-label="Instagram">
+          <a data-link="instagram" aria-label="Instagram" title="Instagram">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
           </a>
-          <a data-link="facebook" aria-label="Facebook">
+          <a data-link="facebook" aria-label="Facebook" title="Facebook">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
           </a>
-          <a data-link="youtube" aria-label="YouTube">
+          <a data-link="tiktok" aria-label="TikTok" title="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.4 2.3 1.9 3.9 4 4.3v3c-1.6 0-3-.5-4-1.3V15a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v3.1a2.5 2.5 0 1 0 1.7 2.4V3H16Z"/></svg>
+          </a>
+          <a data-link="youtube" aria-label="YouTube" title="YouTube">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5 3-5 3Z"/></svg>
           </a>
         </div>
@@ -492,14 +466,14 @@
 
     <div class="footer__bottom">
       <span>© <span data-year>2026</span> SD Negeri 22 Pontianak Barat. Seluruh hak cipta dilindungi.</span>
-      <span>Editor: <span data-cfg="sekolah.editor">Editor</span></span>
+      <span data-cfg="sekolah.editor">Editor</span>
     </div>
   </div>
 </footer>
 
-<div class="lightbox" role="dialog" aria-label="Pratinjau foto">
+<div class="lightbox" role="dialog" aria-label="Pratinjau foto dan video">
   <button class="lightbox__close" aria-label="Tutup">&times;</button>
-  <img src="" alt="" />
+  <div class="lightbox__body"></div>
 </div>
 
 <button class="to-top" aria-label="Kembali ke atas">

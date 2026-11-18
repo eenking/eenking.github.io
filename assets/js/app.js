@@ -1,9 +1,8 @@
 /* =========================================================
    SDN 22 PONTIANAK BARAT — Konfigurasi & Interaksi
    ---------------------------------------------------------
-   SEMUA DATA SEKOLAH, LINK, DAN EMBED DIATUR DI SINI SAJA.
-   Cukup edit objek SITE_CONFIG di bawah, halaman lain
-   otomatis mengikuti.
+   SEMUA DATA SEKOLAH, LINK, EMBED, DAN DAFTAR GURU DIATUR
+   DI SINI SAJA. Halaman lain otomatis mengikuti.
    ========================================================= */
 
 const SITE_CONFIG = {
@@ -11,81 +10,231 @@ const SITE_CONFIG = {
     nama: "SD Negeri 22 Pontianak Barat",
     namaPendek: "SDN 22 Pontianak Barat",
     motto: "Membangun Generasi Cerdas, Berkarakter, dan Berbudaya",
-    alamat: "Gg. Selamat 3 No. 46, Sungai Jawi Dalam, Kec. Pontianak Barat, Kota Pontianak, Kalimantan Barat 78244",
-    telepon: "(0561) 000000",
-    whatsapp: "6281200000000",
+    alamat: "Jl. H. Rais A. Rahman, Gg. Selamat III, Sungai Jawi Dalam, Kec. Pontianak Barat, Kota Pontianak, Kalimantan Barat 78244",
+    telepon: "0812-5414-9295",
+    whatsapp: "6281254149295",
     email: "sdn22pontianakbarat@gmail.com",
-    npsn: "________",
+    npsn: "30105373",
+    nss: "101136004022",
     akreditasi: "A",
-    jamLayanan: "Senin – Jumat, 07.00 – 14.00 WIB",
-    kepalaSekolah: "____________________, S.Pd.",
-    editor: "Rendra Setiadi, S.Kom (TU)",
-    tahun: "2026",
+    jamLayanan: "Senin – Jumat, 07.00 – 15.30 WIB · Sabtu & Minggu tutup",
+    kepalaSekolah: "Amalia Lamuri, S.Pd.",
+    editor: "Rendra Setiadi, S.Kom — TU & Operator Sekolah",
+    tahunPelajaran: "2025/2026",
+    logo: "https://lh3.googleusercontent.com/d/1qIecAxdkPr3Aswl0EKl4QcpUTXXmB_S0=w512",
+    fotoKepsek: "https://lh3.googleusercontent.com/d/1YVoHog2kG9OpDnzcEwGal63nplIoQcbP=w600",
+  },
+
+  statistik: { siswa: 392, laki: 206, perempuan: 186, rombel: 14, personil: 23, tingkat: 6, pns: 8, pppk: 11, honor: 4 },
+
+  /* ------------------------------------------------------------------
+     REKAP ABSENSI — jumlah kehadiran per bulan (tanpa jam masuk/pulang).
+     Sumber: rekap fingerprint SDN 22 Pontianak Barat (folder Drive
+     "ABSEN SDN 22" → REKAP ABSENSI). Perbarui angka di sini setiap bulan.
+     hari    = jumlah hari tercatat
+     pegawai = jumlah pegawai yang memiliki catatan kehadiran
+     hadir   = total kehadiran (hari-orang)
+     ------------------------------------------------------------------ */
+  rekap: {
+    sumber: "Rekap fingerprint SDN 22 Pontianak Barat",
+    diperbarui: "November 2026",
+    2026: [
+      { bulan: "Januari", hari: 20, pegawai: 24, hadir: 480 },
+      { bulan: "Februari", hari: 18, pegawai: 23, hadir: 414 },
+      { bulan: "Maret", hari: 17, pegawai: 22, hadir: 374 },
+      { bulan: "April", hari: 21, pegawai: 22, hadir: 462 },
+      { bulan: "Mei", hari: 16, pegawai: 23, hadir: 365 },
+      { bulan: "Juni", hari: 20, pegawai: 23, hadir: 426 },
+      { bulan: "Juli", hari: 23, pegawai: 23, hadir: 500 },
+      { bulan: "Agustus", hari: 19, pegawai: 23, hadir: 436 },
+      { bulan: "September", hari: 22, pegawai: 23, hadir: 506 },
+      { bulan: "Oktober", hari: 22, pegawai: 22, hadir: 484 },
+    ],
+    2025: [
+      { bulan: "September", hari: 21, pegawai: 22, hadir: 462 },
+      { bulan: "Oktober", hari: 23, pegawai: 23, hadir: 520 },
+      { bulan: "November", hari: 20, pegawai: 23, hadir: 460 },
+      { bulan: "Desember", hari: 21, pegawai: 23, hadir: 380 },
+    ],
   },
 
   /* ------------------------------------------------------------------
-     EMBED — tempel URL embed di sini.
-     Cara ambil URL:
-     • Google Maps   : Maps → Bagikan → Sematkan peta → salin isi src="..."
-     • YouTube       : Share → Embed → salin src="https://www.youtube.com/embed/XXXX"
-     • Google Forms  : Kirim → ikon < > → salin src="..." (akhiri ?embedded=true)
-     • Google Sheets : spreadsheet → File → Bagikan → Publikasikan ke web
-                       → gunakan https://docs.google.com/spreadsheets/d/e/2PACX-.../pubhtml?widget=true&headers=false
-     • Google Drive  : file → Bagikan → Sematkan file → salin src="..."
-     • Google Calendar: Setelan kalender → Integrasikan kalender → salin src="..."
-     Kosongkan ("") bila belum ada — kotak akan menampilkan panduan.
+     EMBED — tempel URL embed di sini. Kosongkan bila belum ada.
+     • Kalender Apps Script : tempel URL /exec (sudah terpasang)
+     • Google Maps   : Bagikan → Sematkan peta → salin isi src="..."
+     • YouTube       : https://www.youtube.com/embed/ID_VIDEO
+     • Google Forms  : Kirim → ikon < > → URL + "?embedded=true"
+     • Google Sheets : File → Bagikan → Publikasikan ke web → pubhtml
+     • Google Drive  : Sematkan file → salin src="..."
      ------------------------------------------------------------------ */
   embeds: {
-    // Contoh siap pakai: peta pencarian lokasi sekolah (ganti dengan sematan resmi dari Google Maps).
     maps: "https://www.google.com/maps?q=SDN%2022%20Pontianak%20Barat&output=embed",
-    youtubeProfil: "",
-    youtubeKegiatan: "",
-    formAbsen: "",
-    // Diambil dari situs absensi lama: PDF rekap April 2025 (sudah publik).
-    rekapAbsen: "https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/preview",
-    kalender: "",
-    grafikGuru: "",
+    kalenderPendidikan: "https://script.google.com/macros/s/AKfycbw6eN0bod7b-YxijMDdnsUDeDPeT_GZJxMUirdANQUEfKbd_uP_eeFpDL7o_UZJnK8o/exec",
+    kalenderSekolah: "https://script.google.com/macros/s/AKfycbyWmZ3a3KKgdbVXB1X582k3jYhOC5c0mElSMKKn_9oRzSossNw8DM-8_mQLLtd82vQs/exec",
+    // Rekap absensi (hanya JUMLAH, tanpa jam) — isi bila spreadsheet sudah dipublikasikan.
+    rekap2026: "",
+    rekap2025: "",
+    // Tabel data personil langsung dari spreadsheet sekolah.
+    personil: "https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/gviz/tq?tqx=out:html",
+    // Tabel jumlah siswa per kelas.
+    jumlahSiswa: "https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/gviz/tq?tqx=out:html&sheet=JUMLAH%20SISWA",
     dokumentasi: "",
   },
 
   /* ------------------------------------------------------------------
-     LINK — tombol & menu cepat
+     LINK — tombol, menu layanan, dan media sosial
      ------------------------------------------------------------------ */
   links: {
-    spmb: "https://sites.google.com/admin.sd.belajar.id/sdn-22-pontianak-barat/beranda",
-    erapor: "",
-    pengumuman: "",
-    pmm: "https://guru.kemdikbud.go.id/",
-    drive: "",
-    situsAbsensi: "https://sites.google.com/admin.sd.belajar.id/absensisdn22pb/halaman-muka",
-    situsProfil: "https://sites.google.com/admin.sd.belajar.id/sdn22pontianakbarat/loginsdn22pb",
-    situsGuru: "https://sites.google.com/admin.sd.belajar.id/gurudanpegawai/kepala-sekolah",
-    instagram: "",
-    facebook: "",
+    spmb: "https://spmb.pontianak.go.id/",
+    spmbToken: "https://siswa.spmb.id/pontianak/login",
+    erapor: "https://ditsd.kemendikdasmen.go.id/s/erapor2025",
+    pmm: "https://guru.kemendikdasmen.go.id/",
+    dapodik: "https://dapo.kemendikdasmen.go.id/",
+    canvaStruktur: "https://canva.link/0srchjtd0mdni95",
+    sheetSiswa: "https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/edit?usp=sharing",
+    sheetPersonil: "https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/edit?usp=sharing",
     youtube: "https://www.youtube.com/@sdn22pontianakbarat",
-    tiktok: "",
-    // Dokumen yang ditemukan dari situs lama (sudah dapat diakses publik):
-    rekapAprPdf: "https://drive.google.com/file/d/1JrE73YfbTjv88PMHF7-ZQohI55dnY0cr/view",
-    pdf9mei: "https://drive.google.com/file/d/1btHzKuWdARIcddXP7SqajOY7cuNNbW5y/view",
-    pdf8mei: "https://drive.google.com/file/d/1RiaKkm0gNeCRpCJAwPuy4W3B1yPWefrN/view",
+    instagram: "https://www.instagram.com/sdn22ponbar",
+    facebook: "https://www.facebook.com/sdn22ponbar/",
+    facebookPage: "https://www.facebook.com/sdn22pontianakbarat/",
+    tiktok: "https://www.tiktok.com/@esdeenduaduaponba",
   },
+
+  /* ------------------------------------------------------------------
+     GALERI — cukup tempel tautan, foto & video langsung tampil.
+     jenis: "video" → isi ID YouTube (contoh: "evGm9PC0E18")
+                      atau tautan YouTube/Drive lengkap
+            "foto"  → tautan Drive (…/file/d/ID/view), URL gambar,
+                      atau path lokal (assets/img/foto.jpg)
+     judul & ket opsional.
+     ------------------------------------------------------------------ */
+  media: [
+    { jenis: "video", src: "evGm9PC0E18", judul: "Menyambut Isra Mi'raj", ket: "Kegiatan keagamaan" },
+    { jenis: "video", src: "u_TewnKguAw", judul: "Persari Pramuka", ket: "Ekstrakurikuler" },
+    { jenis: "video", src: "R0fTYYP_yR0", judul: "Pembukaan Kegiatan P5", ket: "Projek Penguatan Profil Pelajar" },
+    { jenis: "video", src: "6FO_z-O9LhM", judul: "Prestasi Karate Siswa", ket: "Prestasi non-akademik" },
+    { jenis: "video", src: "Y0VJrWeMxaM", judul: "Latihan Pencak Silat Wekasan22", ket: "Ekstrakurikuler" },
+    { jenis: "foto", src: "assets/img/gedung.svg", judul: "Gedung & Halaman Sekolah" },
+    { jenis: "foto", src: "assets/img/upacara.svg", judul: "Upacara Bendera" },
+    { jenis: "foto", src: "assets/img/belajar.svg", judul: "Pembelajaran di Kelas" },
+    { jenis: "foto", src: "assets/img/prestasi.svg", judul: "Prestasi Siswa" },
+    { jenis: "foto", src: "assets/img/ekskul.svg", judul: "Ekstrakurikuler" },
+    { jenis: "foto", src: "assets/img/kantin.svg", judul: "Kantin Sehat" },
+  ],
+
+  /* ------------------------------------------------------------------
+     DAFTAR PERSONIL (sumber: spreadsheet Data Personil sekolah)
+     kategori: "kepsek" | "guru" | "pegawai"
+     ------------------------------------------------------------------ */
+  staff: [
+    { nama: "AMALIA LAMURI, S.Pd", jk: "P", nip: "197910242009022001", pend: "S.1 PGSD", status: "PNS", tugas: "Kepala Sekolah", kategori: "kepsek" },
+    { nama: "SRI SUYATI, S.Pd", jk: "P", nip: "197903022009022002", pend: "S.1 PGSD", status: "PNS", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "JULIANI, S.Pd", jk: "P", nip: "198607122010012001", pend: "S.1 PGSD", status: "PNS", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "NOVITA AYU WARDANI, S.Pd", jk: "P", nip: "199406252019032007", pend: "S.1 PGSD", status: "PNS", tugas: "Guru Kelas · GPK", kategori: "guru" },
+    { nama: "IRMA CHABRINA YANH PURBOSARI, S.Pd", jk: "P", nip: "199001192020122011", pend: "S.1 PJOK", status: "PNS", tugas: "Guru Mapel · Wali Kelas", kategori: "guru" },
+    { nama: "ARTIYA NENGSIH, S.Pd", jk: "P", nip: "199010252020122010", pend: "S.1 PGSD", status: "PNS", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "NAYANK RAGILIA, M.Pd", jk: "P", nip: "199301302020122009", pend: "S.2 PGSD", status: "PNS", tugas: "Wali Kelas", kategori: "guru" },
+    { nama: "SYUKRON MAKMUN, S.Pd", jk: "L", nip: "199311202020121006", pend: "S.1 PGSD", status: "PNS", tugas: "Wali Kelas · Bendahara BOSP", kategori: "guru" },
+    { nama: "EARLYA REZKIANA, S.Pd", jk: "P", nip: "197310102023212007", pend: "S.1 PGSD", status: "PPPK", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "TRI RAHAYU FITRIASARI, S.Pd", jk: "P", nip: "198905052023212034", pend: "S.1 PJOK", status: "PPPK", tugas: "Guru Mapel PJOK", kategori: "guru" },
+    { nama: "NADIA HIDAYATI, S.Pd", jk: "P", nip: "199301122023212027", pend: "S.1 PGSD", status: "PPPK", tugas: "Wali Kelas", kategori: "guru" },
+    { nama: "ELLA KURNIAWATI, S.Pd", jk: "P", nip: "199502222023212031", pend: "S.1 PGSD", status: "PPPK", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "NURUL FAHMI, S.Pd", jk: "P", nip: "199512112023212019", pend: "S.1 Bahasa Indonesia", status: "PPPK", tugas: "Guru Mapel", kategori: "guru" },
+    { nama: "ERAWATI RIZKY, S.Pd", jk: "P", nip: "199408212023212020", pend: "S.1 PGSD", status: "PPPK", tugas: "Wali Kelas", kategori: "guru" },
+    { nama: "SAERANI, S.Pd", jk: "L", nip: "199207072024211008", pend: "S.1 PAI", status: "PPPK", tugas: "Guru PAI & BP · Koordinator Keagamaan", kategori: "guru" },
+    { nama: "JUNI ELSA, S.Pd", jk: "P", nip: "198006252024212002", pend: "S.1 PGSD", status: "PPPK", tugas: "Guru Kelas", kategori: "guru" },
+    { nama: "SAPARINA RAHMA, S.Pd., Gr", jk: "P", nip: "200105052025212010", pend: "S.1 Pendidikan Kimia", status: "PPPK", tugas: "Wali Kelas", kategori: "guru" },
+    { nama: "ANDI MARIFA", jk: "P", nip: "198005152025212005", pend: "SMA IPS", status: "PPPK", tugas: "Tenaga Kependidikan", kategori: "pegawai" },
+    { nama: "AYU SUFA ARFIARDJA", jk: "P", nip: "199610032025212002", pend: "SMK Akuntansi", status: "PPPK", tugas: "Tenaga Kependidikan", kategori: "pegawai" },
+    { nama: "RENDRA SETIADI, S.Kom", jk: "L", nip: "", pend: "S.1 Sistem Informasi", status: "Honor", tugas: "Tata Usaha & Operator Sekolah", kategori: "pegawai" },
+    { nama: "DIAN SAPUTRA, A.Ma", jk: "L", nip: "", pend: "D.2 PJOK", status: "Honor", tugas: "Guru PJOK", kategori: "guru" },
+    { nama: "HERI", jk: "L", nip: "", pend: "SMA", status: "Honor", tugas: "Tenaga Kependidikan", kategori: "pegawai" },
+    { nama: "HERI GUAN", jk: "L", nip: "", pend: "SMA", status: "Honor", tugas: "Tenaga Kependidikan", kategori: "pegawai" },
+  ],
 };
+
+/* =========================================================
+   FOTO PERSONIL (ID file Google Drive, sumber: kolom "URL Pas Foto")
+   ---------------------------------------------------------
+   Kosongkan / hapus entri bila foto belum tersedia — kartu akan
+   otomatis menampilkan inisial nama.
+   ========================================================= */
+const STAFF_FOTO = {
+  "AMALIA LAMURI, S.Pd": "1YVoHog2kG9OpDnzcEwGal63nplIoQcbP",
+  "SRI SUYATI, S.Pd": "1TNYTmhktKtZAkk2wSMj5O86tuy1_dqJw",
+  "JULIANI, S.Pd": "1gHy3HxsHVdeTfxSPYuzOhHG2PBFQknuE",
+  "NOVITA AYU WARDANI, S.Pd": "1u22eY7TDmnoK-mQ1oj4Fk1u-_1onrWWZ",
+  "IRMA CHABRINA YANH PURBOSARI, S.Pd": "1c3x2JjRsu8tiz1eWc7Paoy4vcJez6lMV",
+  "ARTIYA NENGSIH, S.Pd": "1w0ebu3HyKLWJE_F8zpCs2K3GM5jWBqCe",
+  "NAYANK RAGILIA, M.Pd": "1zxZTBNMbXaMoU09cLiEUws8ejZK5wnqp",
+  "SYUKRON MAKMUN, S.Pd": "1jjaYW-oMpiDoxWcMTBcL_61-e6v-qnu0",
+  "EARLYA REZKIANA, S.Pd": "17e0Jwzur5RVNhGJ3lE9pVeu6_9Mlh-KJ",
+  "TRI RAHAYU FITRIASARI, S.Pd": "14ZL0XpSir1sAw6neRFeQ56qQb5eGJTR1",
+  "NADIA HIDAYATI, S.Pd": "1Ni501p-xx2rrmUZ2-34X_5rahYYhk36K",
+  "ELLA KURNIAWATI, S.Pd": "1MM-u-eZ_EegMOWy2v9EPWszh8Uji9p79",
+  "NURUL FAHMI, S.Pd": "1yUcZ2dcDt9URhGo9GFqdx7jwhetJrSX8",
+  "ERAWATI RIZKY, S.Pd": "1jDyjTZM_CQzxrWvruTdjFcY0Myd7VFmE",
+  "SAERANI, S.Pd": "1xI9wuRec3hMUjbyL5NufXEJS3DC4lnla",
+  "JUNI ELSA, S.Pd": "124j8jg8TuQelL_uYOfxMmWcp_svwGTQL",
+  "SAPARINA RAHMA, S.Pd., Gr": "1jRdK7hviaq0fbbtwlNAEyVICI2djsAfQ",
+  "ANDI MARIFA": "1ko7qHSJ3jOPdSlTePI7UBzUPYJNIZOA7",
+  "AYU SUFA ARFIARDJA": "1uuhufZ688MZvk6bHGcUZ-ovK25nUgrne",
+  "RENDRA SETIADI, S.Kom": "19uQJ5UjT-__sUqoeUD4y-1Ym1ujcLpdi",
+  "DIAN SAPUTRA, A.Ma": "1hqtAD1drodzHSu9jgh_zSyYoSaXWdjeb",
+  "HERI": "1wSl7qvweP1_-eJ67vGMQOPuuB5LZ5WLC",
+  "HERI GUAN": "1nmBXaIaNQomsoSk141KHjzfIhBOt3XtQ",
+};
+
+const staffPhoto = (nama) => {
+  const id = STAFF_FOTO[nama];
+  return id ? `https://lh3.googleusercontent.com/d/${id}=w600` : "";
+};
+
+/* =========================================================
+   Helper
+   ========================================================= */
+const cfgGet = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), SITE_CONFIG);
+
+function youtubeId(src) {
+  if (!src) return "";
+  if (/^[\w-]{11}$/.test(src)) return src;
+  const m = src.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
+  return m ? m[1] : "";
+}
+
+function driveId(url) {
+  const m = String(url).match(/(?:\/file\/d\/|\/d\/|id=)([\w-]{20,})/);
+  return m ? m[1] : "";
+}
+
+function mediaThumb(item) {
+  const yt = youtubeId(item.src);
+  if (item.jenis === "video" && yt) return `https://i.ytimg.com/vi/${yt}/hqdefault.jpg`;
+  const d = driveId(item.src);
+  if (d) return `https://lh3.googleusercontent.com/d/${d}=w1200`;
+  return item.src;
+}
+
+function initials(name) {
+  const clean = String(name).split(",")[0].trim().replace(/[^A-Za-z\s]/g, " ");
+  const parts = clean.split(/\s+/).filter(Boolean);
+  return ((parts[0] || "?")[0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
+}
 
 /* =========================================================
    Terapkan konfigurasi ke halaman
    ========================================================= */
 (function applyConfig() {
-  const s = SITE_CONFIG.sekolah;
-
-  // Teks bertanda data-cfg="sekolah.alamat" dll.
   document.querySelectorAll("[data-cfg]").forEach((el) => {
-    const path = el.getAttribute("data-cfg").split(".");
-    let val = SITE_CONFIG;
-    for (const key of path) val = val?.[key];
+    const val = cfgGet(el.getAttribute("data-cfg"));
     if (val !== undefined && val !== "") el.textContent = val;
   });
 
-  // Link bertanda data-link="spmb"
+  document.querySelectorAll("[data-img]").forEach((el) => {
+    const val = cfgGet(el.getAttribute("data-img"));
+    if (val) el.setAttribute("src", val);
+  });
+
   document.querySelectorAll("[data-link]").forEach((el) => {
     const url = SITE_CONFIG.links[el.getAttribute("data-link")];
     if (url) {
@@ -94,19 +243,22 @@ const SITE_CONFIG = {
       el.setAttribute("rel", "noopener");
     } else {
       el.setAttribute("href", "#");
-      el.setAttribute("data-empty-link", "true");
       el.addEventListener("click", (e) => e.preventDefault());
     }
   });
 
-  // Tahun otomatis
-  document.querySelectorAll("[data-year]").forEach((el) => {
-    el.textContent = new Date().getFullYear();
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    const key = el.getAttribute("data-count");
+    if (SITE_CONFIG.statistik[key] !== undefined) el.setAttribute("data-count", SITE_CONFIG.statistik[key]);
   });
 
-  // Nomor WhatsApp siap pakai
+  document.querySelectorAll("[data-year]").forEach((el) => {
+    const offset = Number(el.getAttribute("data-year-offset") || 0);
+    el.textContent = new Date().getFullYear() + offset;
+  });
+
   document.querySelectorAll("[data-wa]").forEach((el) => {
-    el.setAttribute("href", `https://wa.me/${s.whatsapp}`);
+    el.setAttribute("href", `https://wa.me/${SITE_CONFIG.sekolah.whatsapp}`);
     el.setAttribute("target", "_blank");
     el.setAttribute("rel", "noopener");
   });
@@ -116,20 +268,19 @@ const SITE_CONFIG = {
    Embed: muat otomatis saat mendekati layar
    ========================================================= */
 (function embedLoader() {
-  const boxes = document.querySelectorAll("[data-embed]");
-
-  boxes.forEach((box) => {
+  document.querySelectorAll("[data-embed]").forEach((box) => {
     const key = box.getAttribute("data-embed");
     const url = SITE_CONFIG.embeds[key];
     const ph = box.querySelector(".embed__placeholder");
 
     if (!url) {
+      const btn = ph && ph.querySelector("[data-load]");
+      if (btn) btn.remove();
+      if (box.hasAttribute("data-custom-note")) return;
       if (ph) {
         ph.querySelector("h4").textContent = "Embed belum diatur";
         ph.querySelector("p").textContent =
-          "Buka assets/js/app.js lalu isi SITE_CONFIG.embeds." + key + ' dengan URL embed.';
-        const btn = ph.querySelector("[data-load]");
-        if (btn) btn.remove();
+          "Buka assets/js/app.js lalu isi SITE_CONFIG.embeds." + key + " dengan URL embed.";
       }
       return;
     }
@@ -150,14 +301,11 @@ const SITE_CONFIG = {
     const btn = box.querySelector("[data-load]");
     if (btn) btn.addEventListener("click", load);
 
-    // Muat langsung bila sudah dekat layar (tidak menunggu callback observer).
     const nearViewport = () => {
       const r = box.getBoundingClientRect();
       return r.top < window.innerHeight + 400 && r.bottom > -400;
     };
     if (nearViewport()) load();
-
-    // Cadangan: tab yang dibuka di latar belakang / baru diaktifkan.
     window.addEventListener("load", () => nearViewport() && load());
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden && nearViewport()) load();
@@ -179,6 +327,69 @@ const SITE_CONFIG = {
     } else {
       load();
     }
+  });
+})();
+
+/* =========================================================
+   Galeri: render dari SITE_CONFIG.media
+   ========================================================= */
+(function renderGallery() {
+  document.querySelectorAll("[data-gallery]").forEach((wrap) => {
+    const limit = wrap.getAttribute("data-gallery");
+    const items = limit === "all" ? SITE_CONFIG.media : SITE_CONFIG.media.slice(0, Number(limit) || 6);
+
+    wrap.innerHTML = items
+      .map((item) => {
+        const thumb = mediaThumb(item);
+        const isVideo = item.jenis === "video";
+        return `<button class="gallery__item" type="button"
+            data-media="${isVideo ? "video" : "foto"}"
+            data-src="${String(item.src).replace(/"/g, "&quot;")}"
+            data-caption="${String(item.judul || "").replace(/"/g, "&quot;")}">
+            <img src="${thumb}" alt="${String(item.judul || "Kegiatan").replace(/"/g, "&quot;")}" loading="lazy" />
+            ${isVideo ? '<span class="gallery__play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>' : ""}
+            <span class="gallery__cap">${item.judul || ""}${item.ket ? `<em>${item.ket}</em>` : ""}</span>
+          </button>`;
+      })
+      .join("");
+  });
+})();
+
+/* =========================================================
+   Daftar personil: render dari SITE_CONFIG.staff
+   ========================================================= */
+(function renderStaff() {
+  const counts = { kepsek: 0, guru: 0, pegawai: 0 };
+  SITE_CONFIG.staff.forEach((s) => { counts[s.kategori] = (counts[s.kategori] || 0) + 1; });
+
+  document.querySelectorAll("[data-staff-count]").forEach((el) => {
+    const k = el.getAttribute("data-staff-count");
+    if (counts[k] !== undefined) el.textContent = counts[k];
+  });
+
+  document.querySelectorAll("[data-staff-panel]").forEach((panel) => {
+    const kat = panel.getAttribute("data-staff-panel");
+    const list = SITE_CONFIG.staff.filter((s) => s.kategori === kat);
+    panel.innerHTML = list
+      .map(
+        (s) => {
+          const foto = staffPhoto(s.nama);
+          return `<article class="card person">
+        <div class="card__body">
+          <div class="person__avatar" aria-hidden="true">${
+            foto
+              ? `<img src="${foto}" alt="" loading="lazy" />`
+              : initials(s.nama)
+          }</div>
+          <h3 class="person__name">${s.nama}</h3>
+          <div class="person__role">${s.tugas || "Guru"}</div>
+          <div class="person__meta">${s.pend}</div>
+          <div class="person__meta">${s.status}${s.nip ? ` · NIP ${s.nip}` : ""}</div>
+        </div>
+      </article>`;
+        }
+      )
+      .join("");
   });
 })();
 
@@ -225,15 +436,11 @@ const SITE_CONFIG = {
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  if (toTop) {
-    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  }
+  if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
   const items = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
-    items.forEach((el, i) => {
-      el.style.transitionDelay = `${Math.min(i % 4, 3) * 70}ms`;
-    });
+    items.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i % 4, 3) * 70}ms`; });
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -276,10 +483,7 @@ const SITE_CONFIG = {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) {
-            run(e.target);
-            io.unobserve(e.target);
-          }
+          if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
         });
       },
       { threshold: 0.4 }
@@ -306,9 +510,7 @@ const SITE_CONFIG = {
           b.classList.toggle("is-active", on);
           b.setAttribute("aria-selected", String(on));
         });
-        panels.forEach((p) => {
-          p.hidden = p.getAttribute("data-panel") !== id;
-        });
+        panels.forEach((p) => { p.hidden = p.getAttribute("data-panel") !== id; });
       });
     });
   });
@@ -330,29 +532,44 @@ const SITE_CONFIG = {
 })();
 
 /* =========================================================
-   Lightbox galeri
+   Lightbox: foto & video (YouTube / Drive)
    ========================================================= */
 (function lightbox() {
   const box = document.querySelector(".lightbox");
   if (!box) return;
+  const body = box.querySelector(".lightbox__body");
+  const close = () => {
+    box.classList.remove("is-open");
+    body.innerHTML = "";
+  };
 
-  const img = box.querySelector("img");
+  document.addEventListener("click", (e) => {
+    const item = e.target.closest("[data-media]");
+    if (!item) return;
+    const kind = item.getAttribute("data-media");
+    const src = item.getAttribute("data-src");
+    const caption = item.getAttribute("data-caption") || "Kegiatan";
 
-  document.querySelectorAll("[data-lightbox]").forEach((item) => {
-    item.addEventListener("click", () => {
-      const src = item.getAttribute("data-lightbox");
-      if (!src) return;
-      img.src = src;
-      img.alt = item.getAttribute("data-caption") || "Foto kegiatan";
-      box.classList.add("is-open");
-    });
+    if (kind === "video") {
+      const yt = youtubeId(src);
+      const d = driveId(src);
+      const url = yt
+        ? `https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`
+        : d
+        ? `https://drive.google.com/file/d/${d}/preview`
+        : "";
+      if (!url) return;
+      body.innerHTML = `<iframe src="${url}" title="${caption}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    } else {
+      const d = driveId(src);
+      const url = d ? `https://lh3.googleusercontent.com/d/${d}=w1600` : src;
+      body.innerHTML = `<img src="${url}" alt="${caption}" />`;
+    }
+    box.classList.add("is-open");
   });
 
-  const close = () => box.classList.remove("is-open");
   box.addEventListener("click", (e) => {
     if (e.target === box || e.target.closest(".lightbox__close")) close();
   });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 })();
