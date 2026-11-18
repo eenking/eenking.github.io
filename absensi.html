@@ -58,7 +58,9 @@
     <div class="section-head reveal">
       <span class="eyebrow">Rekap Bulanan</span>
       <h2>Kehadiran Tahun Berjalan &amp; Tahun Sebelumnya</h2>
-      <p>Pilih tahun rekap di bawah. Angka diambil dari spreadsheet presensi sekolah dan diperbarui oleh operator.</p>
+      <p>
+        Pilih tahun rekap di bawah. Angka diperbarui operator setiap bulan.
+      </p>
     </div>
 
     <div data-tabs class="reveal">
@@ -74,125 +76,51 @@
       <!-- ================= TAHUN BERJALAN ================= -->
       <div class="tab-panel" data-panel="rekap-now">
 
-        <div class="stats" style="margin-bottom:24px">
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Hari Kerja</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Total Hadir</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Izin &amp; Sakit</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Rata-rata Kehadiran</div></div>
-        </div>
+        <div class="stats" style="margin-bottom:24px" data-rekap-stats="now"></div>
 
         <div class="table-wrap">
           <table>
+            <caption class="visually-hidden">Rekap jumlah kehadiran bulanan tahun berjalan</caption>
             <thead>
               <tr>
                 <th>Bulan</th>
-                <th>Hari Kerja</th>
-                <th>Hadir</th>
-                <th>Izin</th>
-                <th>Sakit</th>
-                <th>Cuti</th>
-                <th>Tanpa Ket.</th>
-                <th>% Kehadiran</th>
+                <th>Hari Tercatat</th>
+                <th>Pegawai</th>
+                <th>Total Kehadiran</th>
+                <th>Rata-rata per Hari</th>
               </tr>
             </thead>
-            <tbody>
-              <tr><td>Januari</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Februari</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Maret</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>April</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Mei</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Juni</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Juli</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Agustus</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>September</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Oktober</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>November</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Desember</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-            </tbody>
+            <tbody data-rekap-body="now"></tbody>
+            <tfoot data-rekap-foot="now"></tfoot>
           </table>
         </div>
 
-        <p class="small" style="margin-top:12px">
-          Tanda “—” berarti rekap bulan tersebut belum diisi. Data angka akan muncul setelah spreadsheet presensi dipublikasikan.
-        </p>
-
-        <div class="embed" style="margin-top:26px" data-embed="rekap2026" data-custom-note data-title="Rekap absensi tahun berjalan">
-          <div class="embed__inner">
-            <div class="embed__placeholder">
-              <div>
-                <div class="embed__placeholder-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
-                </div>
-                <h4>Tabel Rekap Tahun <span data-year>2026</span></h4>
-                <p>Tabel jumlah kehadiran dari spreadsheet sekolah akan tampil di sini.</p>
-                <button class="btn btn--ghost btn--sm" data-load type="button">Muat tabel rekap</button>
-              </div>
-            </div>
-          </div>
-          <div class="embed__note">Sumber: Spreadsheet presensi SDN 22 Pontianak Barat — hanya jumlah, tanpa jam masuk/pulang</div>
-        </div>
+        <p class="small" style="margin-top:12px" data-rekap-note="now"></p>
       </div>
 
       <!-- ================= TAHUN SEBELUMNYA ================= -->
       <div class="tab-panel" data-panel="rekap-prev" hidden>
 
-        <div class="stats" style="margin-bottom:24px">
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Hari Kerja</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Total Hadir</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Izin &amp; Sakit</div></div>
-          <div class="stat"><div class="stat__num">—</div><div class="stat__lbl">Rata-rata Kehadiran</div></div>
-        </div>
+        <div class="stats" style="margin-bottom:24px" data-rekap-stats="prev"></div>
 
         <div class="table-wrap">
           <table>
+            <caption class="visually-hidden">Rekap jumlah kehadiran bulanan tahun sebelumnya</caption>
             <thead>
               <tr>
                 <th>Bulan</th>
-                <th>Hari Kerja</th>
-                <th>Hadir</th>
-                <th>Izin</th>
-                <th>Sakit</th>
-                <th>Cuti</th>
-                <th>Tanpa Ket.</th>
-                <th>% Kehadiran</th>
+                <th>Hari Tercatat</th>
+                <th>Pegawai</th>
+                <th>Total Kehadiran</th>
+                <th>Rata-rata per Hari</th>
               </tr>
             </thead>
-            <tbody>
-              <tr><td>Januari</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Februari</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Maret</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>April</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Mei</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Juni</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Juli</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Agustus</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>September</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Oktober</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>November</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-              <tr><td>Desember</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge--abu">—</span></td></tr>
-            </tbody>
+            <tbody data-rekap-body="prev"></tbody>
+            <tfoot data-rekap-foot="prev"></tfoot>
           </table>
         </div>
 
-        <p class="small" style="margin-top:12px">
-          Rekap tahun sebelumnya ditampilkan sebagai arsip pembanding. Hanya jumlah hari, tanpa jam absen.
-        </p>
-
-        <div class="embed" style="margin-top:26px" data-embed="rekap2025" data-custom-note data-title="Rekap absensi tahun sebelumnya">
-          <div class="embed__inner">
-            <div class="embed__placeholder">
-              <div>
-                <div class="embed__placeholder-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
-                </div>
-                <h4>Tabel Rekap Tahun <span data-year data-year-offset="-1">2025</span></h4>
-                <p>Arsip rekap jumlah kehadiran tahun sebelumnya.</p>
-                <button class="btn btn--ghost btn--sm" data-load type="button">Muat tabel rekap</button>
-              </div>
-            </div>
-          </div>
-          <div class="embed__note">Sumber: Spreadsheet presensi SDN 22 Pontianak Barat — arsip tahun sebelumnya</div>
-        </div>
+        <p class="small" style="margin-top:12px" data-rekap-note="prev"></p>
       </div>
     </div>
 
@@ -200,23 +128,23 @@
     <div class="grid grid--3" style="margin-top:48px">
       <article class="card reveal">
         <div class="card__body">
-          <span class="badge badge--hijau">Hadir</span>
-          <h3 style="margin-top:10px;font-size:1.02rem">Jumlah hari hadir</h3>
-          <p class="small muted" style="margin:0">Banyaknya hari kerja seseorang tercatat masuk, tanpa menampilkan jam kedatangan atau kepulangan.</p>
+          <span class="badge badge--hijau">Hari Tercatat</span>
+          <h3 style="margin-top:10px;font-size:1.02rem">Hari kerja dalam rekap</h3>
+          <p class="small muted" style="margin:0">Banyaknya tanggal kerja yang memiliki catatan presensi pada bulan tersebut, termasuk hari dengan kehadiran sebagian.</p>
         </div>
       </article>
       <article class="card reveal">
         <div class="card__body">
-          <span class="badge badge--kuning">Izin &amp; Sakit</span>
-          <h3 style="margin-top:10px;font-size:1.02rem">Ketidakhadiran resmi</h3>
-          <p class="small muted" style="margin:0">Izin dengan surat/keterangan, sakit dengan surat dokter, serta cuti tahunan yang disetujui pimpinan.</p>
+          <span class="badge badge--kuning">Total Kehadiran</span>
+          <h3 style="margin-top:10px;font-size:1.02rem">Jumlah hari-orang</h3>
+          <p class="small muted" style="margin:0">Akumulasi kehadiran seluruh guru dan tenaga kependidikan: satu orang hadir satu hari dihitung satu.</p>
         </div>
       </article>
       <article class="card reveal">
         <div class="card__body">
-          <span class="badge badge--merah">Tanpa Ket.</span>
-          <h3 style="margin-top:10px;font-size:1.02rem">Tanpa keterangan</h3>
-          <p class="small muted" style="margin:0">Hari kerja tanpa catatan kehadiran maupun keterangan. Menjadi dasar pembinaan kedisiplinan.</p>
+          <span class="badge badge--merah">Rata-rata per Hari</span>
+          <h3 style="margin-top:10px;font-size:1.02rem">Kehadiran harian</h3>
+          <p class="small muted" style="margin:0">Total kehadiran dibagi hari tercatat — menggambarkan berapa pegawai yang hadir pada hari kerja biasa.</p>
         </div>
       </article>
     </div>
@@ -225,10 +153,11 @@
       <div class="card__body">
         <h3 style="font-size:1rem">Catatan untuk operator sekolah</h3>
         <p class="small muted" style="margin-bottom:0">
-          Rekap di halaman ini diambil dari spreadsheet presensi yang dipublikasikan.
-          Agar tabel muncul otomatis: buka <code>assets/js/app.js</code> → <code>SITE_CONFIG.embeds.rekap2026</code> dan
-          <code>rekap2025</code> → tempel URL <code>pubhtml</code> dari spreadsheet rekap.
-          Susun kolom spreadsheet: <em>Nama · Jabatan · Hadir · Izin · Sakit · Cuti · Tanpa Keterangan</em> — tanpa kolom jam.
+          Rekap di halaman ini hanya memuat <strong>jumlah kehadiran</strong> — tanpa jam masuk, jam pulang,
+          maupun formulir presensi. Angka tersimpan di <code>assets/js/app.js</code> pada
+          <code>SITE_CONFIG.rekap</code> dan dikelompokkan per tahun.
+          Setiap awal bulan, tambahkan satu baris pada tahun berjalan dengan format
+          <code>{ bulan, hari, pegawai, hadir }</code>, lalu perbarui <code>rekap.diperbarui</code>.
         </p>
       </div>
     </div>

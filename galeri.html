@@ -112,50 +112,21 @@
       </div>
     </div>
 
-    <!-- ================= EMBED DOKUMENTASI ================= -->
+    <!-- ================= DOKUMENTASI TELEGRAM ================= -->
     <div class="section-head" style="margin-top:56px">
-      <span class="eyebrow">Album Drive</span>
-      <h2>Folder Dokumentasi Kegiatan</h2>
-      <p>Album foto lengkap tersimpan di Google Drive sekolah dan dapat ditampilkan langsung di halaman ini.</p>
+      <span class="eyebrow">Telegram</span>
+      <h2>Dokumentasi Kegiatan</h2>
+      <p>Foto kegiatan terbaru langsung dari channel Telegram <strong>@sdn22pontianakbarat</strong>. Klik foto untuk memperbesar.</p>
     </div>
 
-    <div class="embed reveal" data-embed="dokumentasi" data-custom-note data-title="Folder dokumentasi kegiatan">
-      <div class="embed__inner">
-        <div class="embed__placeholder">
-          <div>
-            <div class="embed__placeholder-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/></svg>
-            </div>
-            <h4>Folder Dokumentasi</h4>
-            <p>Album foto kegiatan sekolah akan tampil di sini setelah tautan folder ditambahkan operator.</p>
-            <button class="btn btn--ghost btn--sm" data-load type="button">Muat folder</button>
-          </div>
-        </div>
-      </div>
-      <div class="embed__note">Sumber: Google Drive — bagikan folder dengan opsi “Siapa saja yang memiliki link”</div>
+    <div class="gallery reveal" data-telegram-gallery>
+      <p class="muted small">Memuat foto dari Telegram…</p>
     </div>
 
-    <!-- ================= PANDUAN MENAMBAH MEDIA ================= -->
-    <div class="card reveal" style="margin-top:34px;border-left:4px solid var(--merah)">
-      <div class="card__body">
-        <h3 style="font-size:1.05rem">Menambah foto atau video baru</h3>
-        <p class="small muted">Cukup tempel tautan pada daftar <code>SITE_CONFIG.media</code> di <code>assets/js/app.js</code> — foto dan video akan langsung tampil tanpa mengubah halaman ini.</p>
-        <div class="table-wrap" style="margin-top:12px">
-          <table style="min-width:520px">
-            <thead><tr><th>Jenis</th><th>Yang ditempel</th><th>Contoh</th></tr></thead>
-            <tbody>
-              <tr><td>Video</td><td>ID atau tautan YouTube</td><td><code>evGm9PC0E18</code></td></tr>
-              <tr><td>Video</td><td>Tautan file Google Drive</td><td><code>drive.google.com/file/d/ID/view</code></td></tr>
-              <tr><td>Foto</td><td>Tautan gambar / Google Drive</td><td><code>drive.google.com/file/d/ID/view</code></td></tr>
-              <tr><td>Foto</td><td>File lokal di folder website</td><td><code>assets/img/upacara.jpg</code></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="small muted" style="margin-top:12px;margin-bottom:0">
-          Format entri: <code>{ jenis: "video", src: "ID_ATAU_LINK", judul: "Judul kegiatan", ket: "Keterangan singkat" }</code>
-        </p>
-      </div>
+    <div class="center" style="margin-top:26px">
+      <a class="btn btn--primary" data-link="telegram">Buka Channel Telegram</a>
     </div>
+    <p class="small muted center" style="margin-top:10px" data-telegram-updated></p>
 
   </div>
 </section>
@@ -243,6 +214,7 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 14 6-6 6 6"/></svg>
 </button>
 
+<script src="assets/data/telegram.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

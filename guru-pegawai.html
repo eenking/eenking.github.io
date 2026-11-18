@@ -103,7 +103,7 @@
       <!-- Guru -->
       <div class="tab-panel" data-panel="guru" hidden>
         <div class="grid grid--4" style="gap:20px" data-staff-panel="guru"></div>
-        <p class="small" style="margin-top:20px">Daftar ini diambil dari spreadsheet Data Personil sekolah. Untuk memperbarui, ubah <code>SITE_CONFIG.staff</code> di <code>assets/js/app.js</code>.</p>
+        <p class="small" style="margin-top:20px">Daftar pendidik dan tenaga kependidikan SD Negeri 22 Pontianak Barat beserta bidang tugasnya.</p>
       </div>
 
       <!-- Pegawai -->
@@ -114,42 +114,20 @@
 
       <!-- Data & Grafik -->
       <div class="tab-panel" data-panel="grafik" hidden>
-        <div class="grid grid--2">
-          <div class="card">
-            <div class="card__body">
-              <h3>Rekap Ketenagaan</h3>
-              <div class="table-wrap" style="margin-top:12px">
-                <table style="min-width:auto">
-                  <thead><tr><th>Kategori</th><th>Jumlah</th></tr></thead>
-                  <tbody>
-                    <tr><td>PNS</td><td><span data-count="pns">0</span></td></tr>
-                    <tr><td>PPPK</td><td><span data-count="pppk">0</span></td></tr>
-                    <tr><td>Honor Sekolah</td><td><span data-count="honor">0</span></td></tr>
-                    <tr><td><strong>Total</strong></td><td><strong><span data-count="personil">0</span></strong></td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-                <a class="btn btn--ghost btn--sm" data-link="sheetPersonil">Buka Spreadsheet Personil</a>
-                <a class="btn btn--ghost btn--sm" data-link="canvaStruktur">Struktur Organisasi</a>
-              </div>
+        <div class="card" style="max-width:640px">
+          <div class="card__body">
+            <h3>Rekap Ketenagaan</h3>
+            <div class="table-wrap" style="margin-top:12px">
+              <table style="min-width:auto">
+                <thead><tr><th>Kategori</th><th>Jumlah</th></tr></thead>
+                <tbody>
+                  <tr><td>PNS</td><td><span data-count="pns">0</span></td></tr>
+                  <tr><td>PPPK</td><td><span data-count="pppk">0</span></td></tr>
+                  <tr><td>Honor Sekolah</td><td><span data-count="honor">0</span></td></tr>
+                  <tr><td><strong>Total</strong></td><td><strong><span data-count="personil">0</span></strong></td></tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-
-          <div class="embed embed--tall" data-embed="personil" data-title="Data personil sekolah">
-            <div class="embed__inner">
-              <div class="embed__placeholder">
-                <div>
-                  <div class="embed__placeholder-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
-                  </div>
-                  <h4>Tabel Data Personil</h4>
-                  <p>Tabel lengkap dari spreadsheet sekolah akan tampil di sini.</p>
-                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat tabel</button>
-                </div>
-              </div>
-            </div>
-            <div class="embed__note">Sumber: Spreadsheet Data Personil SDN 22 Pontianak Barat</div>
           </div>
         </div>
       </div>

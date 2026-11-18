@@ -9,7 +9,7 @@ sematan diatur di satu tempat: `assets/js/app.js` → `SITE_CONFIG`.
 | `index.html` | Beranda: hero, **Akses Cepat** (SPMB · PMM · E-Rapor SD), **Layanan** (Dapodik · SPMB · E-Rapor · PMM), sambutan kepala sekolah, agenda (2 kalender), galeri, lokasi & kontak |
 | `profil.html` | Identitas (NPSN/NSS/alamat/jam layanan), visi & misi, struktur organisasi + tombol Canva, data siswa (sheet “JUMLAH SISWA”), fasilitas, prestasi & ekstrakurikuler |
 | `guru-pegawai.html` | Tab Kepala Sekolah / Guru / Pegawai / Data & Grafik, kartu personil dengan foto asli dari spreadsheet |
-| `absensi.html` | **Rekap bulanan saja** (tahun berjalan & tahun sebelumnya): Hadir, Izin, Sakit, Cuti, Tanpa Ket., % — tanpa jam masuk/pulang dan tanpa formulir |
+| `absensi.html` | **Rekap bulanan saja** (tahun berjalan & tahun sebelumnya): bulan tercatat, pegawai, total kehadiran, rata-rata per hari — tanpa jam masuk/pulang dan tanpa formulir |
 | `galeri.html` | Galeri foto & video (klik untuk memutar/memperbesar), kanal YouTube, media sosial, folder Drive |
 
 > **Catatan penempatan:** Absensi **tidak** ada di “Akses Cepat” atau “Layanan”.
@@ -55,8 +55,9 @@ Lalu buka <http://localhost:8787/index.html>.
 |---|---|
 | `sekolah` | Nama, motto, alamat, WhatsApp `0812-5414-9295`, email, NPSN `30105373`, NSS `101136004022`, jam layanan, kepala sekolah, editor, logo, foto kepala sekolah |
 | `statistik` | 392 siswa (206 L / 186 P), 14 rombel, 23 personil (8 PNS · 11 PPPK · 4 honor) |
+| `rekap` | Angka rekap absensi per bulan (`bulan`, `hari`, `pegawai`, `hadir`) untuk tahun berjalan & sebelumnya, plus `sumber` dan `diperbarui` |
 | `links` | SPMB, aktivasi token, E-Rapor SD, PMM, Dapodik, Canva struktur, spreadsheet siswa & personil, YouTube, Instagram, Facebook, halaman Facebook, TikTok |
-| `embeds` | Maps, 2 kalender Apps Script, tabel personil, sheet jumlah siswa, `rekap2026`, `rekap2025`, `dokumentasi` |
+| `embeds` | Maps, 2 kalender Apps Script, tabel personil, sheet jumlah siswa, `dokumentasi` |
 | `media` | Daftar foto & video galeri — tempel tautan, langsung tampil |
 | `staff` + `STAFF_FOTO` | 23 personil beserta foto (ID Drive) — kartu dirender otomatis |
 
@@ -74,17 +75,30 @@ Cukup tambah satu baris di `SITE_CONFIG.media`:
 - Foto Drive otomatis dikonversi ke `lh3.googleusercontent.com`, video YouTube memakai
   thumbnail asli dan diputar di lightbox.
 
-### Mengisi rekap absensi
+### Memperbarui rekap absensi
 
-`embeds.rekap2026` dan `embeds.rekap2025` masih kosong (tabel menampilkan “—”).
-Isi dengan URL `pubhtml` spreadsheet rekap agar tabel tampil otomatis:
+Rekap ditulis langsung di `SITE_CONFIG.rekap` (bukan embed), dikelompokkan per tahun:
 
+```js
+rekap: {
+  sumber: "Rekap fingerprint SDN 22 Pontianak Barat",
+  diperbarui: "November 2026",
+  2026: [
+    { bulan: "Januari", hari: 20, pegawai: 24, hadir: 480 },
+    // ...
+  ],
+  2025: [ /* arsip tahun sebelumnya */ ],
+}
 ```
-File → Bagikan → Publikasikan ke web → HTML → salin URL
-```
 
-Kolom yang dipakai: `Nama · Jabatan · Hadir · Izin · Sakit · Cuti · Tanpa Keterangan`.
-Jangan menambahkan kolom jam masuk/pulang.
+- `hari` = jumlah hari yang memiliki catatan presensi pada bulan itu.
+- `pegawai` = jumlah pegawai yang muncul pada bulan itu.
+- `hadir` = total kehadiran (hari-orang), bukan persentase.
+- Setiap awal bulan: tambahkan satu baris pada tahun berjalan, lalu ubah `rekap.diperbarui`.
+- Halaman **hanya menampilkan jumlah** — jam masuk/pulang dan formulir tidak pernah dimuat.
+- Sumber angka: folder Drive **“ABSEN SDN 22” → REKAP ABSENSI** (sheet `REKAP ABSEN <BULAN> <TAHUN>`).
+- Bulan tanpa data cukup dihilangkan dari daftar; halaman otomatis menuliskan bulan yang belum tersedia.
+- Tahun baru: tambahkan kunci tahun (mis. `2027: []`) — tab tahun berjalan mengikuti tanggal komputer.
 
 ---
 

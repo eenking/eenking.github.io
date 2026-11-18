@@ -148,14 +148,18 @@ Di halaman induk **Guru & Pegawai**, buat 3 tombol besar menuju sub-halaman ters
 ## 7. Halaman Absensi
 
 Halaman ini **hanya menampilkan rekap bulanan** — tidak ada formulir, dan **tidak
-menampilkan jam masuk/pulang**. Hanya jumlah: Hadir, Izin, Sakit, Cuti, Tanpa Keterangan.
+menampilkan jam masuk/pulang**. Hanya jumlah: Bulan Tercatat, Pegawai, Total Kehadiran,
+Rata-rata per Hari.
 
 1. **Rekap Tahun Berjalan**
-   - **Sisipkan → Spreadsheet** → pilih spreadsheet presensi → sheet rekap tahun ini.
+   - **Sisipkan → Tabel** 5 kolom: `Bulan · Hari Tercatat · Pegawai · Total Kehadiran · Rata-rata per Hari`.
+   - Isi satu baris per bulan dari sheet **Rekap Bulanan** (bagian 10–11).
    - Tambahkan teks pengantar: *“Rekap jumlah kehadiran guru dan tenaga kependidikan.”*
 2. **Rekap Tahun Sebelumnya**
    - Ulangi langkah di atas dengan sheet arsip tahun lalu (sebagai pembanding).
-3. **Keterangan kolom** (kotak teks 3 kolom): arti Hadir, Izin & Sakit, Tanpa Keterangan.
+   - Sebutkan bulan yang belum tersedia, mis. *“Belum tersedia: Januari–Agustus 2025.”*
+3. **Keterangan kolom** (kotak teks 3 kolom): arti Hari Tercatat, Total Kehadiran,
+   Rata-rata per Hari.
 4. **Jangan** menautkan situs absensi lama, PDF lama, atau formulir apa pun.
 
 **Penting:** spreadsheet rekap harus dibagikan **Siapa saja yang memiliki link (Lihat)**
@@ -240,39 +244,48 @@ Google Sites sendiri **tidak bisa** disematkan, tetapi situs HTML statis bisa.
 
 ---
 
-## 10. Menyiapkan spreadsheet rekap absensi
+## 10. Menyiapkan data rekap absensi
 
-Karena halaman absensi **tidak memakai formulir**, rekap cukup disusun di satu spreadsheet.
+Karena halaman absensi **tidak memakai formulir**, rekap cukup dihitung dari log mesin absen.
 
-1. Buat spreadsheet **“Absensi SDN 22 Pontianak Barat”** (akun sekolah).
-2. Sheet **Absen Harian** (diisi manual atau impor dari mesin absen), kolom:
-   `Tanggal · Nama · Jabatan · Status` (Hadir/Izin/Sakit/Cuti/Dinas Luar/Tanpa Keterangan).
-3. Sheet **Rekap 2026** dan **Rekap 2025**, kolom:
-   `Nama · Jabatan · Hadir · Izin · Sakit · Cuti · Tanpa Keterangan · % Kehadiran`.
-4. **Jangan** menambahkan kolom jam masuk/pulang pada sheet rekap — halaman hanya menampilkan jumlah.
-5. Bagikan: **File → Bagikan → Publikasikan ke web → HTML** (atau “Siapa saja yang memiliki link · Lihat”).
+1. Folder Drive **“ABSEN SDN 22”** berisi subfolder per bulan
+   (`JULI 2025` … `OKTOBER 2026`). Di dalamnya ada sheet
+   **`REKAP ABSEN <BULAN> <TAHUN>`**.
+2. Satu baris sheet = satu orang pada satu tanggal. Kolom penting:
+   `Nama · Tanggal · Scan Masuk · Scan Pulang`.
+   Baris dianggap hadir bila **Scan Masuk terisi**.
+3. Untuk tiap bulan, hitung tiga angka:
+   - **Hari Tercatat** = jumlah tanggal unik yang punya catatan masuk.
+   - **Pegawai** = jumlah nama unik pada bulan itu.
+   - **Total Kehadiran** = jumlah baris dengan Scan Masuk terisi.
+4. Simpan hasilnya di sheet **Rekap Bulanan**, kolom:
+   `Bulan · Hari Tercatat · Pegawai · Total Kehadiran · Rata-rata per Hari`.
+5. **Jangan** menambahkan kolom jam masuk/pulang pada sheet rekap — halaman hanya
+   menampilkan jumlah. Jangan membagikan folder mentah ke publik.
+6. Bila perlu disematkan: **File → Bagikan → Publikasikan ke web → HTML**, lalu pakai
+   kode E di bagian 9. Jangan beri akses edit.
 
 ---
 
 ## 11. Rekap otomatis di Google Sheets
 
-Anggap sheet harian bernama `Absen Harian`, kolom: `A` Tanggal, `B` Nama, `D` Status.
+Anggap sheet log bernama `Absen`, dengan kolom: `A` Tanggal, `B` Nama, `F` Scan Masuk.
 
-Buat sheet **Rekap 2026**, lalu:
-
-```
-A2: Nama guru (daftar nama)
-B2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Hadir";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-C2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Izin";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-D2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Sakit";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-E2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Cuti";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-F2: =COUNTIFS('Absen Harian'!$B:$B;$A2;'Absen Harian'!$D:$D;"Tanpa Keterangan";TEXT('Absen Harian'!$A:$A;"YYYY-MM");TEXT(TODAY();"YYYY-MM"))
-G2: =IFERROR(B2/(B2+C2+D2+E2+F2);0)      ← format sebagai persen
-```
-
-Tarik rumus ke bawah, lalu **Publikasikan ke web** sheet `Rekap 2026` dan sematkan
-ke halaman **Absensi → Rekap Tahun Berjalan** (kode E di bagian 9).
-Untuk tahun sebelumnya, duplikat sheet dan ganti `TEXT(TODAY();"YYYY-MM")` menjadi `"2025-*"`.
+1. Di kolom bantu `L` (baris 2 ke bawah) isi:
+   ```
+   L2: =TEXT(A2;"YYYY-MM")
+   ```
+2. Buat sheet **Rekap Bulanan**. Kolom `A` berisi bulan dalam teks, mis. `2026-01`.
+3. Rumus mulai baris 2:
+   ```
+   B2: =COUNTA(UNIQUE(FILTER(Absen!$A$2:$A$1000;Absen!$L$2:$L$1000=$A2;Absen!$F$2:$F$1000<>"")))
+   C2: =COUNTA(UNIQUE(FILTER(Absen!$B$2:$B$1000;Absen!$L$2:$L$1000=$A2;Absen!$F$2:$F$1000<>"")))
+   D2: =COUNTIFS(Absen!$L$2:$L$1000;$A2;Absen!$F$2:$F$1000;"<>")
+   E2: =IFERROR(D2/B2;0)      ← format angka 1 desimal
+   ```
+   - `B2` = hari tercatat, `C2` = pegawai, `D2` = total kehadiran, `E2` = rata-rata per hari.
+   - Isi daftar bulan (`2025-09`, `2025-10`, …) di kolom `A`, lalu tarik rumus ke bawah.
+4. Salin angka `B–E` ke halaman **Absensi** di Google Sites (atau sematkan sheet rekap).
 
 > Jika regional sheet memakai koma, ganti `;` menjadi `,` pada rumus.
 
@@ -296,6 +309,7 @@ Untuk tahun sebelumnya, duplikat sheet dan ganti `TEXT(TODAY();"YYYY-MM")` menja
 | Spreadsheet jumlah siswa (sheet `JUMLAH SISWA`) | `https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/edit` |
 | Spreadsheet data personil | `https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/edit` |
 | Bagan struktur organisasi (Canva) | `https://canva.link/0srchjtd0mdni95` |
+| Folder rekap absensi (sumber angka, khusus operator) | `https://drive.google.com/drive/folders/1UPCNht8fxKZug7rBDLAdssVyw6CndnEu` |
 | Kalender Pendidikan (Apps Script) | `https://script.google.com/macros/s/AKfycbw6eN0bod7b-YxijMDdnsUDeDPeT_GZJxMUirdANQUEfKbd_uP_eeFpDL7o_UZJnK8o/exec` |
 | Kalender Sekolah (Apps Script) | `https://script.google.com/macros/s/AKfycbyWmZ3a3KKgdbVXB1X582k3jYhOC5c0mElSMKKn_9oRzSossNw8DM-8_mQLLtd82vQs/exec` |
 
@@ -328,6 +342,7 @@ dan tiga PDF rekap absensi lama. Semua datanya sudah digantikan halaman rekap ba
 - [ ] Nama, NIP, foto kepala sekolah & guru sudah benar
 - [ ] Peta menunjuk lokasi benar (Jl. H. Rais A. Rahman, Gg. Selamat III, Sungai Jawi Dalam)
 - [ ] Rekap absensi tampil (tahun berjalan & tahun sebelumnya), tanpa jam masuk/pulang
+- [ ] Angka rekap sesuai folder Drive “ABSEN SDN 22” (hari, pegawai, total kehadiran)
 - [ ] Absensi **tidak** muncul di “Akses Cepat” maupun “Layanan”
 - [ ] Video YouTube bisa diputar & foto galeri tampil
 - [ ] Tautan SPMB / Token / E-Rapor / PMM / Dapodik tidak ada yang kosong

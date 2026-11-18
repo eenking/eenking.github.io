@@ -225,7 +225,7 @@
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn btn--primary btn--sm" data-link="canvaStruktur">Buka Bagan Canva</a>
-          <a class="btn btn--ghost btn--sm" data-link="sheetPersonil">Data Personil</a>
+          <a class="btn btn--ghost btn--sm" href="guru-pegawai.html">Lihat Data Personil</a>
         </div>
       </div>
     </div>
@@ -246,31 +246,11 @@
       <p>Rekap jumlah siswa menurut jenis kelamin dan rombongan belajar, tahun pelajaran <span data-cfg="sekolah.tahunPelajaran">2025/2026</span>.</p>
     </div>
 
-    <div class="stats reveal" style="margin-bottom:26px">
+    <div class="stats reveal">
       <div class="stat"><div class="stat__num"><span data-count="siswa">0</span></div><div class="stat__lbl">Total Siswa</div></div>
       <div class="stat"><div class="stat__num"><span data-count="laki">0</span></div><div class="stat__lbl">Laki-laki</div></div>
       <div class="stat"><div class="stat__num"><span data-count="perempuan">0</span></div><div class="stat__lbl">Perempuan</div></div>
       <div class="stat"><div class="stat__num"><span data-count="rombel">0</span></div><div class="stat__lbl">Rombel</div></div>
-    </div>
-
-    <div class="embed embed--tall reveal" data-embed="jumlahSiswa" data-title="Tabel jumlah siswa per kelas">
-      <div class="embed__inner">
-        <div class="embed__placeholder">
-          <div>
-            <div class="embed__placeholder-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
-            </div>
-            <h4>Tabel Jumlah Siswa</h4>
-            <p>Tabel dari sheet “JUMLAH SISWA” akan tampil di sini.</p>
-            <button class="btn btn--ghost btn--sm" data-load type="button">Muat tabel</button>
-          </div>
-        </div>
-      </div>
-      <div class="embed__note">Sumber: Spreadsheet sekolah — sheet “JUMLAH SISWA”</div>
-    </div>
-
-    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-      <a class="btn btn--ghost btn--sm" data-link="sheetSiswa">Buka Spreadsheet Jumlah Siswa</a>
     </div>
   </div>
 </section>
@@ -340,18 +320,24 @@
       <p>Pembinaan bakat siswa melalui kegiatan ekstrakurikuler dan lomba. Dokumentasi kegiatan tersedia di galeri video sekolah.</p>
     </div>
 
-    <div class="grid grid--4">
+    <div class="grid grid--3">
       <article class="card card--hover reveal"><div class="card__body">
-        <span class="badge badge--merah">Olahraga</span>
-        <h3 style="margin-top:10px;font-size:1.02rem">Karate</h3>
-        <p class="small muted">Pembinaan karate siswa dengan prestasi di tingkat kota.</p>
-        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat video</a>
+        <span class="badge badge--merah">Seni</span>
+        <h3 style="margin-top:10px;font-size:1.02rem">Menyanyi Solo</h3>
+        <p class="small muted">Pembinaan olah vokal dan penampilan pada kegiatan sekolah.</p>
+        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
       </div></article>
       <article class="card card--hover reveal"><div class="card__body">
         <span class="badge badge--merah">Olahraga</span>
-        <h3 style="margin-top:10px;font-size:1.02rem">Pencak Silat</h3>
-        <p class="small muted">Latihan rutin Pencak Silat Wekasan22 setiap pekan.</p>
-        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat video</a>
+        <h3 style="margin-top:10px;font-size:1.02rem">Futsal</h3>
+        <p class="small muted">Latihan rutin dan turnamen antarsekolah.</p>
+        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
+      </div></article>
+      <article class="card card--hover reveal"><div class="card__body">
+        <span class="badge badge--merah">Olahraga</span>
+        <h3 style="margin-top:10px;font-size:1.02rem">Mini Soccer</h3>
+        <p class="small muted">Pembinaan sepak bola usia dini di lapangan sekolah.</p>
+        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
       </div></article>
       <article class="card card--hover reveal"><div class="card__body">
         <span class="badge badge--hijau">Kepramukaan</span>
@@ -360,10 +346,16 @@
         <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat video</a>
       </div></article>
       <article class="card card--hover reveal"><div class="card__body">
-        <span class="badge badge--kuning">Projek</span>
-        <h3 style="margin-top:10px;font-size:1.02rem">P5</h3>
-        <p class="small muted">Projek Penguatan Profil Pelajar Pancasila tiap semester.</p>
+        <span class="badge badge--merah">Bela Diri</span>
+        <h3 style="margin-top:10px;font-size:1.02rem">Pencak Silat</h3>
+        <p class="small muted">Latihan rutin Pencak Silat Wekasan22 setiap pekan.</p>
         <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat video</a>
+      </div></article>
+      <article class="card card--hover reveal"><div class="card__body">
+        <span class="badge badge--kuning">Seni</span>
+        <h3 style="margin-top:10px;font-size:1.02rem">Seni Tari</h3>
+        <p class="small muted">Latihan tari tradisional dan tampil di acara sekolah.</p>
+        <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
       </div></article>
     </div>
   </div>

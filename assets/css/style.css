@@ -339,13 +339,27 @@ img.brand__logo { object-fit: contain; background: #fff; border-radius: 12px; pa
 .embed__placeholder p { font-size: .85rem; color: var(--teks-2); max-width: 42ch; margin-inline: auto; }
 .embed__note { padding: 10px 14px; font-size: .78rem; color: var(--teks-2); background: #fff; border-top: 1px solid var(--garis); }
 .embed.is-loaded .embed__placeholder { display: none; }
+.embed--kalender .embed__inner { min-height: 620px; }
+.embed--kalender iframe { height: 620px; }
+
+/* ---------- Telegram ---------- */
+.telegram-card__body { display: flex; gap: 20px; align-items: flex-start; }
+.telegram-card__icon { flex: 0 0 auto; width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; background: #e7f3fb; color: #229ed9; }
+.telegram-posts { display: grid; gap: 18px; margin-top: 22px; }
+.telegram-post iframe { width: 100% !important; border: 0; }
+@media (max-width: 560px) {
+  .telegram-card__body { flex-direction: column; gap: 14px; }
+}
 
 /* ---------- Table ---------- */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--garis); background: #fff; box-shadow: var(--shadow-s); }
 table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 560px; }
 thead th { background: var(--merah-lembut); color: var(--merah-tua); text-align: left; font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; padding: 13px 16px; white-space: nowrap; }
 tbody td { padding: 13px 16px; border-top: 1px solid var(--garis); }
 tbody tr:hover { background: #fcfcfd; }
+tfoot td { padding: 13px 16px; border-top: 2px solid var(--garis); background: #fafafc; font-weight: 800; color: var(--teks); }
+tfoot td:first-child { color: var(--merah-tua); }
 
 /* ---------- Accordion (visi/misi, FAQ) ---------- */
 .acc { border: 1px solid var(--garis); border-radius: var(--radius); background: #fff; overflow: hidden; box-shadow: var(--shadow-s); }

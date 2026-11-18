@@ -219,89 +219,63 @@
 </section>
 
 <!-- ================= AGENDA & PENGUMUMAN ================= -->
-<section class="section section--krem">
+<section class="section section--krem" id="agenda">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Informasi</span>
       <h2>Agenda &amp; Pengumuman Sekolah</h2>
-      <p>Kalender pendidikan dan kalender akademik sekolah, serta pengumuman resmi terbaru.</p>
+      <p>Kalender kegiatan dan agenda akademik sekolah. Kalender pendidikan lengkap dapat dibuka melalui tombol di bawah.</p>
     </div>
 
-    <div class="split reveal" style="align-items:start">
-      <div data-tabs>
-        <div class="tabs" role="tablist" aria-label="Jenis kalender">
-          <button class="tab is-active" data-tab="kaldik" role="tab" aria-selected="true">Kalender Pendidikan</button>
-          <button class="tab" data-tab="kalak" role="tab" aria-selected="false">Kalender Sekolah</button>
-        </div>
-
-        <div class="tab-panel" data-panel="kaldik">
-          <div class="embed embed--tall" data-embed="kalenderPendidikan" data-title="Kalender Pendidikan">
-            <div class="embed__inner">
-              <div class="embed__placeholder">
-                <div>
-                  <div class="embed__placeholder-icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                  </div>
-                  <h4>Kalender Pendidikan</h4>
-                  <p>Kalender pendidikan tahun pelajaran berjalan.</p>
-                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
-                </div>
+    <div class="reveal">
+      <div class="embed embed--kalender" data-embed="kalenderSekolah" data-title="Kalender Sekolah">
+        <div class="embed__inner">
+          <div class="embed__placeholder">
+            <div>
+              <div class="embed__placeholder-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
               </div>
+              <h4>Kalender Sekolah</h4>
+              <p>Agenda kegiatan sekolah.</p>
+              <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
             </div>
-            <div class="embed__note">Sumber: Kalender Pendidikan SDN 22 Pontianak Barat</div>
-          </div>
-        </div>
-
-        <div class="tab-panel" data-panel="kalak" hidden>
-          <div class="embed embed--tall" data-embed="kalenderSekolah" data-title="Kalender Akademik Sekolah">
-            <div class="embed__inner">
-              <div class="embed__placeholder">
-                <div>
-                  <div class="embed__placeholder-icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                  </div>
-                  <h4>Kalender Sekolah</h4>
-                  <p>Agenda kegiatan sekolah.</p>
-                  <button class="btn btn--ghost btn--sm" data-load type="button">Muat kalender</button>
-                </div>
-              </div>
-            </div>
-            <div class="embed__note">Sumber: Kalender Akademik SDN 22 Pontianak Barat</div>
           </div>
         </div>
       </div>
 
-      <div>
-        <div class="grid" style="gap:14px">
-          <article class="card reveal">
-            <div class="card__body">
-              <span class="badge badge--merah">SPMB</span>
-              <h3 style="margin-top:10px">Penerimaan Peserta Didik Baru</h3>
-              <p class="muted small">Pendaftaran SPMB Kota Pontianak dibuka sesuai jadwal Dinas Pendidikan. Siapkan akta kelahiran, kartu keluarga, dan foto.</p>
-              <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <a class="btn btn--primary btn--sm" data-link="spmb">Daftar SPMB</a>
-                <a class="btn btn--ghost btn--sm" data-link="spmbToken">Aktivasi Token</a>
-              </div>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div class="card__body">
-              <span class="badge badge--hijau">Akademik</span>
-              <h3 style="margin-top:10px">Jadwal Penilaian Sumatif</h3>
-              <p class="muted small">Jadwal penilaian akhir semester diumumkan melalui wali kelas dan kalender pendidikan sekolah.</p>
-              <a class="btn btn--ghost btn--sm" data-link="erapor">Aplikasi E-Rapor</a>
-            </div>
-          </article>
-          <article class="card reveal">
-            <div class="card__body">
-              <span class="badge badge--kuning">Kegiatan</span>
-              <h3 style="margin-top:10px">Kantin Sehat &amp; Jumat Bersih</h3>
-              <p class="muted small">Program pembiasaan sekolah untuk menjaga kesehatan dan kebersihan lingkungan.</p>
-              <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
-            </div>
-          </article>
-        </div>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn--primary btn--sm" data-link="kalenderPendidikan">Buka Kalender Pendidikan</a>
       </div>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:34px">
+      <article class="card reveal">
+        <div class="card__body">
+          <span class="badge badge--merah">SPMB</span>
+          <h3 style="margin-top:10px">Penerimaan Peserta Didik Baru</h3>
+          <p class="muted small">Pendaftaran SPMB Kota Pontianak dibuka sesuai jadwal Dinas Pendidikan. Siapkan akta kelahiran, kartu keluarga, dan foto.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn btn--primary btn--sm" data-link="spmb">Daftar SPMB</a>
+            <a class="btn btn--ghost btn--sm" data-link="spmbToken">Aktivasi Token</a>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card__body">
+          <span class="badge badge--hijau">Akademik</span>
+          <h3 style="margin-top:10px">Jadwal Penilaian Sumatif</h3>
+          <p class="muted small">Jadwal penilaian akhir semester diumumkan melalui wali kelas dan kalender pendidikan sekolah.</p>
+          <a class="btn btn--ghost btn--sm" data-link="erapor">Aplikasi E-Rapor</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="card__body">
+          <span class="badge badge--kuning">Kegiatan</span>
+          <h3 style="margin-top:10px">Kantin Sehat &amp; Jumat Bersih</h3>
+          <p class="muted small">Program pembiasaan sekolah untuk menjaga kesehatan dan kebersihan lingkungan.</p>
+          <a class="btn btn--ghost btn--sm" href="galeri.html">Lihat dokumentasi</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>

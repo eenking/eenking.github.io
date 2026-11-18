@@ -71,14 +71,16 @@ const SITE_CONFIG = {
     maps: "https://www.google.com/maps?q=SDN%2022%20Pontianak%20Barat&output=embed",
     kalenderPendidikan: "https://script.google.com/macros/s/AKfycbw6eN0bod7b-YxijMDdnsUDeDPeT_GZJxMUirdANQUEfKbd_uP_eeFpDL7o_UZJnK8o/exec",
     kalenderSekolah: "https://script.google.com/macros/s/AKfycbyWmZ3a3KKgdbVXB1X582k3jYhOC5c0mElSMKKn_9oRzSossNw8DM-8_mQLLtd82vQs/exec",
-    // Rekap absensi (hanya JUMLAH, tanpa jam) — isi bila spreadsheet sudah dipublikasikan.
-    rekap2026: "",
-    rekap2025: "",
-    // Tabel data personil langsung dari spreadsheet sekolah.
-    personil: "https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/gviz/tq?tqx=out:html",
-    // Tabel jumlah siswa per kelas.
-    jumlahSiswa: "https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/gviz/tq?tqx=out:html&sheet=JUMLAH%20SISWA",
-    dokumentasi: "",
+  },
+
+  /* ------------------------------------------------------------------
+     TELEGRAM — channel dokumentasi kegiatan.
+     Galeri foto diperbarui otomatis dari channel oleh
+     scripts/fetch-telegram.py → assets/data/telegram.js.
+     ------------------------------------------------------------------ */
+  telegram: {
+    channel: "sdn22pontianakbarat",
+    judul: "SDN 22 Pontianak Barat",
   },
 
   /* ------------------------------------------------------------------
@@ -91,13 +93,13 @@ const SITE_CONFIG = {
     pmm: "https://guru.kemendikdasmen.go.id/",
     dapodik: "https://dapo.kemendikdasmen.go.id/",
     canvaStruktur: "https://canva.link/0srchjtd0mdni95",
-    sheetSiswa: "https://docs.google.com/spreadsheets/d/1kRRy8URTSJl-FaaKpCGREc0U3v5LH_nqnNqkdI_prdM/edit?usp=sharing",
-    sheetPersonil: "https://docs.google.com/spreadsheets/d/1qW-ASxa-IEPlwGSJvzLXtiWzxUD-Q6RxTXMAggdqPrQ/edit?usp=sharing",
+    kalenderPendidikan: "https://script.google.com/macros/s/AKfycbw6eN0bod7b-YxijMDdnsUDeDPeT_GZJxMUirdANQUEfKbd_uP_eeFpDL7o_UZJnK8o/exec",
     youtube: "https://www.youtube.com/@sdn22pontianakbarat",
     instagram: "https://www.instagram.com/sdn22ponbar",
     facebook: "https://www.facebook.com/sdn22ponbar/",
     facebookPage: "https://www.facebook.com/sdn22pontianakbarat/",
     tiktok: "https://www.tiktok.com/@esdeenduaduaponba",
+    telegram: "https://t.me/sdn22pontianakbarat",
   },
 
   /* ------------------------------------------------------------------
@@ -265,6 +267,44 @@ function initials(name) {
 })();
 
 /* =========================================================
+   Kalender: skala otomatis agar tidak ada scroll horizontal
+   ========================================================= */
+var fitCalendarEmbed = function () {};
+(function calendarFit() {
+  const BASE_W = 640;
+  const BASE_H = 760;
+
+  const apply = () => {
+    document.querySelectorAll(".embed--kalender").forEach((box) => {
+      const inner = box.querySelector(".embed__inner");
+      const iframe = inner && inner.querySelector("iframe");
+      if (!inner || !iframe) return;
+
+      const w = inner.clientWidth;
+      if (w > 0 && w < BASE_W) {
+        const s = w / BASE_W;
+        iframe.style.width = BASE_W + "px";
+        iframe.style.height = BASE_H + "px";
+        iframe.style.transform = "scale(" + s + ")";
+        iframe.style.transformOrigin = "top left";
+        inner.style.height = Math.round(BASE_H * s) + "px";
+        inner.style.overflow = "hidden";
+      } else {
+        iframe.style.width = "";
+        iframe.style.height = "";
+        iframe.style.transform = "";
+        iframe.style.transformOrigin = "";
+        inner.style.height = "";
+        inner.style.overflow = "";
+      }
+    });
+  };
+
+  fitCalendarEmbed = apply;
+  window.addEventListener("resize", apply);
+})();
+
+/* =========================================================
    Embed: muat otomatis saat mendekati layar
    ========================================================= */
 (function embedLoader() {
@@ -296,6 +336,8 @@ function initials(name) {
       iframe.setAttribute("allow", "clipboard-write; encrypted-media; picture-in-picture");
       box.querySelector(".embed__inner").appendChild(iframe);
       box.classList.add("is-loaded");
+      fitCalendarEmbed();
+      iframe.addEventListener("load", fitCalendarEmbed);
     };
 
     const btn = box.querySelector("[data-load]");
@@ -356,6 +398,61 @@ function initials(name) {
 })();
 
 /* =========================================================
+   Telegram: tampilkan foto terbaru langsung dari channel
+   (data diperbarui oleh scripts/fetch-telegram.py)
+   ========================================================= */
+(function renderTelegramGallery() {
+  const wrap = document.querySelector("[data-telegram-gallery]");
+  if (!wrap) return;
+
+  const data = window.TELEGRAM_GALLERY;
+  const note = document.querySelector("[data-telegram-updated]");
+  const posts = (data && Array.isArray(data.posts)) ? data.posts : [];
+
+  const tanggal = (iso) => {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+  };
+
+  if (!posts.length) {
+    wrap.innerHTML = `<div class="card" style="grid-column:1/-1"><div class="card__body">
+      <h3 style="font-size:1.05rem">Dokumentasi di Telegram</h3>
+      <p class="small muted" style="margin-bottom:0">Foto kegiatan sekolah dapat dilihat langsung di channel
+      Telegram <strong>@sdn22pontianakbarat</strong>.</p>
+    </div></div>`;
+    return;
+  }
+
+  const photos = [];
+  posts.forEach((post) => {
+    (post.photos || []).forEach((src) => {
+      photos.push({ src, date: post.date, url: post.url });
+    });
+  });
+
+  wrap.innerHTML = photos
+    .map((photo, i) => {
+      const src = String(photo.src).replace(/"/g, "&quot;");
+      const caption = "Dokumentasi Kegiatan";
+      const tanggalTeks = tanggal(photo.date);
+      return `<button class="gallery__item" type="button"
+          data-media="foto"
+          data-src="${src}"
+          data-caption="${caption} ${tanggalTeks}">
+          <img src="${src}" alt="${caption} ${tanggalTeks}" loading="${i < 8 ? "eager" : "lazy"}" />
+          <span class="gallery__cap">${caption}<em>${tanggalTeks}</em></span>
+        </button>`;
+    })
+    .join("");
+
+  if (note) {
+    note.textContent = `Diperbarui otomatis dari Telegram · ${tanggal(data.updated) || "baru saja"}`;
+  }
+})();
+
+/* =========================================================
    Daftar personil: render dari SITE_CONFIG.staff
    ========================================================= */
 (function renderStaff() {
@@ -390,6 +487,113 @@ function initials(name) {
         }
       )
       .join("");
+  });
+})();
+
+/* =========================================================
+   Rekap absensi: render tabel jumlah kehadiran per bulan
+   ========================================================= */
+(function renderRekap() {
+  const groups = document.querySelectorAll("[data-rekap-stats]");
+  if (!groups.length) return;
+
+  const NAMA_BULAN = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember",
+  ];
+
+  const now = new Date().getFullYear();
+  const years = { now, prev: now - 1 };
+
+  const fmtNum = (n) =>
+    String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  const fmtAvg = (n) => (Number(n) || 0).toFixed(1).replace(".", ",");
+
+  // Ubah daftar bulan menjadi rentang: [8,9,10] -> "September–Oktober"
+  const rentang = (list) => {
+    if (!list.length) return "";
+    const out = [];
+    let start = list[0];
+    let prev = list[0];
+    for (let i = 1; i <= list.length; i++) {
+      const cur = list[i];
+      if (cur === prev + 1) { prev = cur; continue; }
+      out.push(start === prev ? NAMA_BULAN[start] : `${NAMA_BULAN[start]}–${NAMA_BULAN[prev]}`);
+      start = cur;
+      prev = cur;
+    }
+    return out.join(", ");
+  };
+
+  Object.entries(years).forEach(([suffix, year]) => {
+    const rows = (SITE_CONFIG.rekap[year] || []).slice();
+    const statsEl = document.querySelector(`[data-rekap-stats="${suffix}"]`);
+    const bodyEl = document.querySelector(`[data-rekap-body="${suffix}"]`);
+    const footEl = document.querySelector(`[data-rekap-foot="${suffix}"]`);
+    const noteEl = document.querySelector(`[data-rekap-note="${suffix}"]`);
+    if (!statsEl || !bodyEl) return;
+
+    if (!rows.length) {
+      statsEl.innerHTML = ["Bulan Tercatat", "Total Kehadiran", "Rata-rata per Hari", "Hari Tercatat"]
+        .map((lbl) => `<div class="stat"><div class="stat__num">—</div><div class="stat__lbl">${lbl}</div></div>`)
+        .join("");
+      bodyEl.innerHTML = `<tr><td colspan="5" class="muted">Belum ada rekap untuk tahun ${year}.</td></tr>`;
+      if (footEl) footEl.innerHTML = "";
+      if (noteEl) {
+        noteEl.textContent = `Rekap tahun ${year} belum tersedia. Data akan ditampilkan setelah operator sekolah memperbaruinya.`;
+      }
+      return;
+    }
+
+    const totalHari = rows.reduce((a, r) => a + Number(r.hari || 0), 0);
+    const totalHadir = rows.reduce((a, r) => a + Number(r.hadir || 0), 0);
+    const pegawaiMaks = rows.reduce((a, r) => Math.max(a, Number(r.pegawai || 0)), 0);
+    const rata = totalHari ? totalHadir / totalHari : 0;
+
+    statsEl.innerHTML = [
+      { num: fmtNum(rows.length), lbl: "Bulan Tercatat" },
+      { num: fmtNum(totalHadir), lbl: "Total Kehadiran" },
+      { num: fmtAvg(rata), lbl: "Rata-rata per Hari" },
+      { num: fmtNum(totalHari), lbl: "Hari Tercatat" },
+    ]
+      .map((s) => `<div class="stat"><div class="stat__num">${s.num}</div><div class="stat__lbl">${s.lbl}</div></div>`)
+      .join("");
+
+    bodyEl.innerHTML = rows
+      .map(
+        (r) => `<tr>
+          <td>${r.bulan}</td>
+          <td>${fmtNum(r.hari)}</td>
+          <td>${fmtNum(r.pegawai)}</td>
+          <td>${fmtNum(r.hadir)}</td>
+          <td>${fmtAvg(Number(r.hari) ? Number(r.hadir) / Number(r.hari) : 0)}</td>
+        </tr>`
+      )
+      .join("");
+
+    if (footEl) {
+      footEl.innerHTML = `<tr>
+        <td>Total ${fmtNum(rows.length)} bulan</td>
+        <td>${fmtNum(totalHari)}</td>
+        <td>${fmtNum(pegawaiMaks)} <small class="muted">maks.</small></td>
+        <td>${fmtNum(totalHadir)}</td>
+        <td>${fmtAvg(rata)}</td>
+      </tr>`;
+    }
+
+    if (noteEl) {
+      const tersedia = rows.map((r) => NAMA_BULAN.indexOf(r.bulan)).filter((i) => i >= 0).sort((a, b) => a - b);
+      const belum = NAMA_BULAN.map((_, i) => i).filter((i) => !tersedia.includes(i));
+      noteEl.textContent =
+        `Data tersedia: ${rentang(tersedia)} ${year} (${rows.length} bulan).` +
+        (belum.length ? ` Belum tersedia: ${rentang(belum)} ${year}.` : "");
+    }
+  });
+
+  document.querySelectorAll("[data-rekap-meta]").forEach((el) => {
+    const sumber = SITE_CONFIG.rekap.sumber || "rekap presensi sekolah";
+    const diperbarui = SITE_CONFIG.rekap.diperbarui || "";
+    el.textContent = `Sumber: ${sumber}${diperbarui ? ` · Diperbarui ${diperbarui}` : ""}.`;
   });
 })();
 
