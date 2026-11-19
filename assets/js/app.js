@@ -20,7 +20,7 @@ const SITE_CONFIG = {
     jamLayanan: "Senin – Jumat, 07.00 – 15.30 WIB · Sabtu & Minggu tutup",
     kepalaSekolah: "Amalia Lamuri, S.Pd.",
     editor: "Rendra Setiadi, S.Kom — TU & Operator Sekolah",
-    tahunPelajaran: "2025/2026",
+    tahunPelajaran: "2026/2027",
     logo: "https://lh3.googleusercontent.com/d/1qIecAxdkPr3Aswl0EKl4QcpUTXXmB_S0=w512",
     fotoKepsek: "https://lh3.googleusercontent.com/d/1YVoHog2kG9OpDnzcEwGal63nplIoQcbP=w600",
   },
