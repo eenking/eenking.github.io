@@ -49,6 +49,7 @@ MAX_PHOTOS = 72          # jumlah foto yang ditampilkan di galeri
 WORKERS = 2              # kurangi beban permintaan paralel ke Telegram
 RETRIES = 3
 TIMEOUT = 25
+VIDEO_EXTENSIONS = {".mp4", ".mov", ".webm", ".m4v", ".mkv", ".avi", ".mpeg", ".mpg"}
 
 HEADERS = {
     "User-Agent": (
@@ -143,7 +144,7 @@ def fetch(post_id: int) -> str:
 
 
 def _image_urls(values: list[str], page: str) -> list[str]:
-    """Temukan URL berkas gambar pada atribut dan markup embed."""
+    """Temukan URL gambar, sambil mengecualikan berkas video Telegram."""
     urls: list[str] = []
     for value in [*values, page]:
         for candidate in URL_RE.findall(html.unescape(value)):
@@ -153,6 +154,10 @@ def _image_urls(values: list[str], page: str) -> list[str]:
             if "/file/" not in parsed.path.lower():
                 continue
             if not (host.endswith("telesco.pe") or host.endswith("telegram.org")):
+                continue
+            # Embed Telegram juga menyertakan URL .mp4/.mov; itu bukan foto
+            # dan akan tampil sebagai ikon gambar rusak jika dirender dengan <img>.
+            if Path(parsed.path).suffix.lower() in VIDEO_EXTENSIONS:
                 continue
             if candidate not in urls:
                 urls.append(candidate)
