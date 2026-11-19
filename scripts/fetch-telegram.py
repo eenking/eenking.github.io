@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ambil foto terbaru dari channel/group Telegram sekolah.
+"""Ambil foto dari postingan Telegram yang dipilih.
 
 Hasilnya ditulis ke assets/data/telegram.js sehingga halaman Galeri dapat
 menampilkan foto langsung tanpa server tambahan.
@@ -24,13 +24,25 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 CHANNEL = "sdn22pontianakbarat"
+# Galeri hanya mengambil foto dari nomor postingan yang tercantum di sini.
+SELECTED_POST_IDS = (
+    2700,   # Dokumentasi
+    3598,   # PENCAKSILAT
+    2570,   # FUTSAL
+    16243,  # HUT KOTE PTK
+    16193,
+    13455,
+    12144,
+    11843,
+    13994,
+    9991,
+    12658,
+)
 BASE_URL = "https://t.me/{channel}/{post_id}?embed=1"
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = ROOT / "assets" / "data" / "telegram.js"
 
 MAX_PHOTOS = 72          # jumlah foto yang ditampilkan di galeri
-MAX_SCAN_BACK = 90       # jumlah pesan terakhir yang diperiksa
-BATCH_SIZE = 15          # pesan yang diunduh per gelombang
 WORKERS = 8
 TIMEOUT = 25
 
@@ -80,7 +92,7 @@ def parse(post_id: int, page: str) -> dict | None:
 
     text = ""
     match_text = re.search(
-        r'tgme_widget_message_text[^>]*>(.*?)</div>', page, re.S
+        r"tgme_widget_message_text[^>]*>(.*?)</div>", page, re.S
     )
     if match_text:
         raw = re.sub(r"<br\s*/?>", "\n", match_text.group(1))
@@ -108,14 +120,6 @@ def fetch_pages(ids: list[int]) -> dict[int, str]:
         return dict(zip(ids, pool.map(fetch, ids)))
 
 
-def page_valid(page: str) -> bool:
-    return bool(page and POST_RE.search(page) and DATE_RE.search(page))
-
-
-def fetch_valid(ids: list[int]) -> dict[int, str]:
-    return {i: page for i, page in fetch_pages(ids).items() if page_valid(page)}
-
-
 def fetch_many(ids: list[int]) -> dict[int, dict]:
     """Unduh dan parsing banyak pesan secara paralel."""
     pages = fetch_pages(ids)
@@ -127,106 +131,28 @@ def fetch_many(ids: list[int]) -> dict[int, dict]:
     return result
 
 
-def is_valid(post_id: int) -> bool:
-    """True jika nomor pesan ada (walau isinya teks/kosong tanpa foto)."""
-    return page_valid(fetch(post_id))
-
-
-def read_last_id() -> int:
-    if not OUTPUT.exists():
-        return 0
-    match = re.search(r'"last_id"\s*:\s*(\d+)', OUTPUT.read_text(encoding="utf-8"))
-    return int(match.group(1)) if match else 0
-
-
-def find_latest_bootstrap() -> int:
-    """Pencarian awal saat belum ada data sama sekali."""
-    low, step = 0, 1000
-    high = 0
-    while step <= 500_000:
-        if is_valid(step):
-            low = step
-            step *= 2
-        else:
-            high = step
-            break
-
-    if high <= low:
-        high = low + step
-
-    while high - low > 1:
-        mid = (low + high) // 2
-        if is_valid(mid):
-            low = mid
-        else:
-            high = mid
-
-    latest = low
-    for post_id in range(low + 1, min(low + 60, high + 60)):
-        if is_valid(post_id):
-            latest = post_id
-    return latest
-
-
-def find_latest(previous: int) -> int:
-    """Cari nomor pesan terbaru; pesan baru diperiksa per gelombang."""
-    if previous <= 0:
-        return find_latest_bootstrap()
-
-    if not is_valid(previous):
-        for post_id in range(previous - 1, previous - 51, -1):
-            if is_valid(post_id):
-                previous = post_id
-                break
-        else:
-            return find_latest_bootstrap()
-
-    latest = previous
-    cursor = previous + 1
-    misses = 0
-
-    while cursor <= previous + 600:
-        ids = list(range(cursor, cursor + 20))
-        found = fetch_valid(ids)
-        if found:
-            latest = max(found)
-            misses = 0
-        else:
-            misses += len(ids)
-            if misses >= 20:
-                break
-        cursor += 20
-
-    return latest
-
-
-def collect(latest: int) -> list[dict]:
-    """Kumpulkan pesan terakhir yang memiliki foto, terbaru lebih dulu."""
+def collect_selected() -> list[dict]:
+    """Ambil foto hanya dari postingan yang dipilih, sesuai urutan daftar."""
+    messages = fetch_many(list(SELECTED_POST_IDS))
     posts: list[dict] = []
     seen_photos: set[str] = set()
     total_photos = 0
 
-    for start in range(latest, max(0, latest - MAX_SCAN_BACK), -BATCH_SIZE):
-        ids = [i for i in range(start, start - BATCH_SIZE, -1) if i > 0]
-        if not ids:
-            break
-        messages = fetch_many(ids)
+    for post_id in SELECTED_POST_IDS:
+        message = messages.get(post_id)
+        if not message:
+            print(f"Postingan {post_id} tidak dapat dibaca.", file=sys.stderr)
+            continue
 
-        for post_id in ids:
-            message = messages.get(post_id)
-            if not message:
-                continue
+        fresh = [url for url in message["photos"] if url not in seen_photos]
+        if not fresh:
+            continue
 
-            fresh = [url for url in message["photos"] if url not in seen_photos]
-            if not fresh:
-                continue
-
-            for url in fresh:
-                seen_photos.add(url)
-            message["photos"] = fresh
-            posts.append(message)
-            total_photos += len(fresh)
-
+        for url in fresh:
+            seen_photos.add(url)
+        message["photos"] = fresh
+        posts.append(message)
+        total_photos += len(fresh)
         if total_photos >= MAX_PHOTOS:
             break
 
@@ -239,6 +165,7 @@ def write_output(latest: int, posts: list[dict]) -> None:
         "channel_url": f"https://t.me/{CHANNEL}",
         "updated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "last_id": latest,
+        "selected_ids": list(SELECTED_POST_IDS),
         "posts": posts,
     }
 
@@ -249,22 +176,16 @@ def write_output(latest: int, posts: list[dict]) -> None:
         "window.TELEGRAM_GALLERY = " + body + ";\n",
         encoding="utf-8",
     )
-    print(f"{len(posts)} pesan, {sum(len(p['photos']) for p in posts)} foto -> {OUTPUT}")
+    print(f"{len(posts)} postingan terpilih, {sum(len(p['photos']) for p in posts)} foto -> {OUTPUT}")
 
 
 def main() -> int:
-    previous = read_last_id()
-    latest = find_latest(previous)
-    if latest <= 0:
-        print("Tidak ada pesan Telegram yang dapat dibaca.", file=sys.stderr)
-        return 1
-
-    posts = collect(latest)
+    posts = collect_selected()
     if not posts:
-        print("Tidak ada foto pada pesan terbaru.", file=sys.stderr)
+        print("Tidak ada foto pada postingan Telegram terpilih.", file=sys.stderr)
         return 1
 
-    write_output(latest, posts)
+    write_output(max(SELECTED_POST_IDS, default=0), posts)
     return 0
 
 
