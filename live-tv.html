@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live TV Informasi — SDN 22 Pontianak Barat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #090b10;
+      --bg-panel: #121620;
+      --bg-card: #181d2a;
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #c1121f;
+      --primary-bright: #ef233c;
+      --accent-gold: #f4a261;
+      --accent-green: #10b981;
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #1a0608 0%, #2b090d 45%, #121620 100%);
+      border-bottom: 2px solid var(--primary);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-bright), #780000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(193, 18, 31, 0.45);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      color: #ffffff;
+    }
+
+    .brand-text p {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .sync-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    .dot.offline {
+      background: #f59e0b;
+      box-shadow: 0 0 8px #f59e0b;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .clock-box {
+      text-align: right;
+    }
+
+    .clock-time {
+      font-size: 1.45rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .clock-date {
+      font-size: 0.78rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .btn-fs {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-fs:hover {
+      background: var(--primary);
+    }
+
+    /* MAIN GRID */
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 310px 1fr 350px;
+      gap: 16px;
+      padding: 16px 24px;
+      overflow: hidden;
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .panel-title span.tag {
+      font-size: 0.7rem;
+      background: rgba(193, 18, 31, 0.2);
+      color: #ff6b6b;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(193, 18, 31, 0.4);
+    }
+
+    /* LEFT COLUMN: STATISTIK & VISI */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: hidden;
+    }
+
+    .hero-stat {
+      background: linear-gradient(135deg, var(--primary) 0%, #780000 100%);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-stat .label {
+      font-size: 0.78rem;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .hero-stat .value {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .stat-box .num {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-box .lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .gtk-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .gtk-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .gtk-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    .gtk-pill {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 6px;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.72rem;
+    }
+
+    .gtk-pill strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--accent-gold);
+    }
+
+    .visi-box {
+      background: linear-gradient(180deg, rgba(193, 18, 31, 0.12) 0%, rgba(24, 29, 42, 0.9) 100%);
+      border: 1px solid rgba(193, 18, 31, 0.35);
+      border-radius: 12px;
+      padding: 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .visi-box p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #f1f5f9;
+      font-style: italic;
+    }
+
+    /* CENTER COLUMN: JADWAL & GRAFIK ABSENSI */
+    .col-center {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: hidden;
+    }
+
+    .jadwal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      overflow-y: auto;
+    }
+
+    .jadwal-item {
+      display: grid;
+      grid-template-columns: 112px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid #334155;
+      border-radius: 10px;
+      padding: 9px 12px;
+      transition: all 0.25s ease;
+    }
+
+    .jadwal-item.active {
+      background: linear-gradient(90deg, rgba(193, 18, 31, 0.24), var(--bg-card));
+      border-color: rgba(239, 35, 60, 0.5);
+      border-left: 4px solid var(--primary-bright);
+    }
+
+    .jadwal-time {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .jadwal-info h4 {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .jadwal-info span {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .badge-now {
+      background: var(--primary-bright);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      animation: pulse 1.8s infinite;
+    }
+
+    /* CHART ABSENSI */
+    .chart-panel {
+      flex: 1;
+      min-height: 185px;
+    }
+
+    .chart-container {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 22px;
+      padding-bottom: 4px;
+    }
+
+    .bar-col {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .bar-val {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    .bar-fill {
+      width: 100%;
+      max-width: 34px;
+      background: linear-gradient(180deg, var(--primary-bright) 0%, #780000 100%);
+      border-radius: 6px 6px 2px 2px;
+      transition: height 0.6s ease;
+      min-height: 8px;
+    }
+
+    .bar-lbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 6px;
+    }
+
+    .bar-sub {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+    }
+
+    /* RIGHT COLUMN: PENGUMUMAN */
+    .pengumuman-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .info-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .info-cat {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      text-transform: uppercase;
+    }
+
+    .info-cat.SPMB { background: rgba(239, 35, 60, 0.2); color: #ff758f; }
+    .info-cat.AKADEMIK { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .info-cat.KEGIATAN { background: rgba(244, 162, 97, 0.2); color: #f4a261; }
+
+    .info-date {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .info-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+
+    /* FOOTER MARQUEE */
+    footer {
+      background: #0d1017;
+      border-top: 1px solid var(--border);
+      height: 40px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .ticker-label {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0 18px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.6px;
+      flex-shrink: 0;
+    }
+
+    .ticker-wrap {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-text {
+      display: inline-block;
+      padding-left: 100%;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      animation: marquee 32s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* RESPONSIF UNTUK HP / TABLET */
+    @media (max-width: 1023px) {
+      body { height: auto; overflow-y: auto; }
+      main { grid-template-columns: 1fr; overflow: visible; }
+      header { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="logo-badge">SDN 22</div>
+      <div class="brand-text">
+        <h1>SD NEGERI 22 PONTIANAK BARAT</h1>
+        <p>NPSN: 30105373 · Akreditasi A · Jl. H. Rais A. Rahman, Gg. Selamat III, Pontianak Barat</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="sync-pill">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Menghubungkan...</span>
+      </div>
+      <div class="clock-box">
+        <div class="clock-time" id="clockTime">00:00:00</div>
+        <div class="clock-date" id="clockDate">Memuat tanggal...</div>
+      </div>
+      <button class="btn-fs" onclick="toggleFullScreen()">Layar Penuh</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- KOLOM KIRI: STATISTIK & VISI -->
+    <section class="col-left">
+      <div class="panel">
+        <div class="panel-title">
+          <span>Data Statistik Sekolah</span>
+          <span class="tag">LIVE SHEET</span>
+        </div>
+
+        <div class="hero-stat">
+          <div>
+            <div class="label">Total Peserta Didik</div>
+            <div class="value" id="totalSiswa">392</div>
+          </div>
+          <div style="text-align:right">
+            <div class="label">Rombongan Belajar</div>
+            <div class="value" id="statRombel">14</div>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="num" id="statLaki" style="color:#60a5fa">206</div>
+            <div class="lbl">Siswa Laki-laki</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" id="statPerempuan" style="color:#f472b6">186</div>
+            <div class="lbl">Siswa Perempuan</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" id="totalGtk" style="color:#34d399">23</div>
+            <div class="lbl">Total GTK</div>
+          </div>
+        </div>
+
+        <div class="gtk-bar">
+          <div class="gtk-header">
+            <span>Komposisi Pendidik & Tenaga Kependidikan</span>
+          </div>
+          <div class="gtk-pills">
+            <div class="gtk-pill"><strong id="statPns">8</strong>PNS</div>
+            <div class="gtk-pill"><strong id="statPppk">11</strong>PPPK</div>
+            <div class="gtk-pill"><strong id="statHonor">4</strong>Honor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="flex:1">
+        <div class="panel-title">
+          <span>Visi Sekolah</span>
+          <span class="tag">PROFIL</span>
+        </div>
+        <div class="visi-box">
+          <p id="textVisi">"Terwujudnya peserta didik yang beriman, cerdas, berkarakter, mandiri, dan berbudaya, serta peduli terhadap lingkungan."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KOLOM TENGAH: JADWAL KBM & GRAFIK ABSENSI -->
+    <section class="col-center">
+      <div class="panel">
+        <div class="panel-title">
+          <span>Jadwal Kegiatan & Layanan Harian</span>
+          <span class="tag" id="jadwalBadge">WIB</span>
+        </div>
+        <div class="jadwal-list" id="jadwalContainer"></div>
+      </div>
+
+      <div class="panel chart-panel">
+        <div class="panel-title">
+          <span>Rekap Kehadiran GTK Bulanan</span>
+          <span class="tag">GRAFIK</span>
+        </div>
+        <div class="chart-container" id="chartContainer"></div>
+      </div>
+    </section>
+
+    <!-- KOLOM KANAN: PENGUMUMAN -->
+    <section class="panel">
+      <div class="panel-title">
+        <span>Papan Informasi & Pengumuman</span>
+        <span class="tag">TERKINI</span>
+      </div>
+      <div class="pengumuman-list" id="pengumumanContainer"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="ticker-label">INFO SEKOLAH</div>
+    <div class="ticker-wrap">
+      <div class="ticker-text" id="marqueeText">
+        Selamat Datang di SD Negeri 22 Pontianak Barat (NPSN: 30105373 · Akreditasi A) — Motto: Membangun Generasi Cerdas, Berkarakter, dan Berbudaya — Alamat: Jl. H. Rais A. Rahman, Gg. Selamat III, Sungai Jawi Dalam, Pontianak Barat — Layanan WhatsApp: 0812-5414-9295
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // URL Web App Google Apps Script Anda
+    const API_URL = "https://script.google.com/macros/s/AKfycbzoXRDrEE3zCWzteGM8pSROpxkrbpqvndRktplIepkM849jxatet1js9SDUXvLSWtGx/exec";
+
+    // Data awal sebelum koneksi API selesai
+    let cachedData = {
+      statistik: {
+        laki: 206, perempuan: 186, rombel: 14, pns: 8, pppk: 11, honor: 4,
+        visi: "Terwujudnya peserta didik yang beriman, cerdas, berkarakter, mandiri, dan berbudaya, serta peduli terhadap lingkungan.",
+        marquee: "Selamat Datang di SD Negeri 22 Pontianak Barat (NPSN: 30105373 · Akreditasi A) — Motto: Membangun Generasi Cerdas, Berkarakter, dan Berbudaya — Alamat: Jl. H. Rais A. Rahman, Gg. Selamat III, Sungai Jawi Dalam, Pontianak Barat — Layanan WhatsApp: 0812-5414-9295"
+      },
+      absensi: [
+        { bulan: "Jan", hari: 20, hadir: 480 }, { bulan: "Feb", hari: 18, hadir: 414 },
+        { bulan: "Mar", hari: 17, hadir: 374 }, { bulan: "Apr", hari: 21, hadir: 462 },
+        { bulan: "Mei", hari: 16, hadir: 365 }, { bulan: "Jun", hari: 20, hadir: 426 },
+        { bulan: "Jul", hari: 23, hadir: 500 }, { bulan: "Agu", hari: 19, hadir: 436 },
+        { bulan: "Sep", hari: 22, hadir: 506 }, { bulan: "Okt", hari: 22, hadir: 484 }
+      ],
+      jadwal: [
+        { mulai: "06:45", selesai: "07:00", kegiatan: "Penyambutan Siswa & 5S", keterangan: "Gerbang Sekolah · Guru Piket" },
+        { mulai: "07:00", selesai: "07:30", kegiatan: "Upacara / Pembiasaan Pagi & Literasi", keterangan: "Lapangan & Ruang Kelas" },
+        { mulai: "07:30", selesai: "09:30", kegiatan: "Kegiatan Belajar Mengajar (Sesi I)", keterangan: "Seluruh Rombel Kelas I – VI" },
+        { mulai: "09:30", selesai: "10:00", kegiatan: "Istirahat & Kantin Sehat", keterangan: "Pengawasan Guru Piket" },
+        { mulai: "10:00", selesai: "12:00", kegiatan: "Kegiatan Belajar Mengajar (Sesi II)", keterangan: "Intrakurikuler & Projek P5" },
+        { mulai: "12:00", selesai: "15:30", kegiatan: "Layanan TU, Ekstrakurikuler & Operator", keterangan: "Ruang Kantor & Lapangan" }
+      ],
+      pengumuman: [
+        { kategori: "SPMB", tanggal: "TP 2026/2027", judul: "Penerimaan Peserta Didik Baru (SPMB)", isi: "Pendaftaran online melalui spmb.pontianak.go.id. Siapkan akta kelahiran, kartu keluarga, dan pas foto." },
+        { kategori: "AKADEMIK", tanggal: "E-Rapor SD", judul: "Jadwal Penilaian Sumatif & E-Rapor", isi: "Jadwal penilaian akhir semester diumumkan melalui wali kelas dan kalender pendidikan sekolah." },
+        { kategori: "KEGIATAN", tanggal: "Pembiasaan", judul: "Kantin Sehat & Jumat Bersih", isi: "Program pembiasaan sekolah untuk menjaga kesehatan gizi dan kebersihan lingkungan." },
+        { kategori: "LAYANAN", tanggal: "Info TU", judul: "Aktivasi Token SPMB SMP & Legalisir", isi: "Layanan orang tua dibuka Senin – Jumat pukul 07.00 – 15.30 WIB atau via WA 0812-5414-9295." }
+      ]
+    };
+
+    function updateClock() {
+      const now = new Date();
+      const hariList = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const bulanList = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+      const jam = String(now.getHours()).padStart(2, '0');
+      const menit = String(now.getMinutes()).padStart(2, '0');
+      const detik = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById("clockTime").textContent = `${jam}:${menit}:${detik} WIB`;
+      document.getElementById("clockDate").textContent = `${hariList[now.getDay()]}, ${now.getDate()} ${bulanList[now.getMonth()]} ${now.getFullYear()}`;
+    }
+
+    function parseMenit(waktuStr) {
+      const parts = String(waktuStr).split(":");
+      if (parts.length < 2) return -1;
+      return (parseInt(parts[0], 10) * 60) + parseInt(parts[1], 10);
+    }
+
+    function renderDashboard(data) {
+      // 1. Statistik
+      const s = data.statistik || {};
+      const laki = Number(s.laki) || 0;
+      const perempuan = Number(s.perempuan) || 0;
+      const pns = Number(s.pns) || 0;
+      const pppk = Number(s.pppk) || 0;
+      const honor = Number(s.honor) || 0;
+
+      document.getElementById("statLaki").textContent = laki;
+      document.getElementById("statPerempuan").textContent = perempuan;
+      document.getElementById("totalSiswa").textContent = laki + perempuan;
+      document.getElementById("statRombel").textContent = s.rombel || 0;
+      document.getElementById("statPns").textContent = pns;
+      document.getElementById("statPppk").textContent = pppk;
+      document.getElementById("statHonor").textContent = honor;
+      document.getElementById("totalGtk").textContent = pns + pppk + honor;
+
+      if (s.visi) document.getElementById("textVisi").textContent = `"${s.visi}"`;
+      if (s.marquee) document.getElementById("marqueeText").textContent = s.marquee;
+
+      // 2. Jadwal KBM (Sorot otomatis sesi yang sedang berlangsung)
+      const now = new Date();
+      const nowMenit = now.getHours() * 60 + now.getMinutes();
+      const jadwalEl = document.getElementById("jadwalContainer");
+      jadwalEl.innerHTML = "";
+
+      (data.jadwal || []).forEach(item => {
+        const startM = parseMenit(item.mulai);
+        const endM = parseMenit(item.selesai);
+        const isAktif = (startM >= 0 && endM >= 0 && nowMenit >= startM && nowMenit < endM);
+
+        const div = document.createElement("div");
+        div.className = `jadwal-item ${isAktif ? 'active' : ''}`;
+        div.innerHTML = `
+          <div class="jadwal-time">${item.mulai} – ${item.selesai}</div>
+          <div class="jadwal-info">
+            <h4>${item.kegiatan}</h4>
+            <span>${item.keterangan}</span>
+          </div>
+          <div>${isAktif ? '<span class="badge-now">BERLANGSUNG</span>' : ''}</div>
+        `;
+        jadwalEl.appendChild(div);
+      });
+
+      // 3. Grafik Rekap Absensi
+      const absensiList = data.absensi || [];
+      const maxHadir = Math.max(...absensiList.map(a => Number(a.hadir) || 0), 1);
+      const chartEl = document.getElementById("chartContainer");
+      chartEl.innerHTML = "";
+
+      absensiList.forEach(item => {
+        const val = Number(item.hadir) || 0;
+        const pct = Math.round((val / maxHadir) * 100);
+        const col = document.createElement("div");
+        col.className = "bar-col";
+        col.innerHTML = `
+          <div class="bar-val">${val}</div>
+          <div class="bar-fill" style="height: ${pct}%"></div>
+          <div class="bar-lbl">${item.bulan}</div>
+          <div class="bar-sub">${item.hari} hr</div>
+        `;
+        chartEl.appendChild(col);
+      });
+
+      // 4. Pengumuman
+      const infoEl = document.getElementById("pengumumanContainer");
+      infoEl.innerHTML = "";
+
+      (data.pengumuman || []).forEach(item => {
+        const katClass = String(item.kategori || "").toUpperCase();
+        const card = document.createElement("div");
+        card.className = "info-card";
+        card.innerHTML = `
+          <div class="info-top">
+            <span class="info-cat ${katClass}">${item.kategori}</span>
+            <span class="info-date">${item.tanggal}</span>
+          </div>
+          <h4>${item.judul}</h4>
+          <p>${item.isi}</p>
+        `;
+        infoEl.appendChild(card);
+      });
+    }
+
+    async function fetchSheetData() {
+      const dot = document.getElementById("statusDot");
+      const statusText = document.getElementById("statusText");
+
+      try {
+        const res = await fetch(API_URL);
+        const json = await res.json();
+
+        if (json.status === "ok") {
+          cachedData = json;
+          renderDashboard(cachedData);
+          dot.classList.remove("offline");
+          const waktu = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+          statusText.textContent = `Terhubung · Update ${waktu}`;
+        } else {
+          throw new Error(json.pesan || "Respons tidak valid");
+        }
+      } catch (err) {
+        dot.classList.add("offline");
+        statusText.textContent = "Mode Offline (Cache)";
+        renderDashboard(cachedData);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Jalankan pertama kali
+    updateClock();
+    renderDashboard(cachedData);
+    fetchSheetData();
+
+    // Update jam tiap 1 detik, update penyorotan jadwal tiap 30 detik, tarik data Spreadsheet tiap 60 detik
+    setInterval(updateClock, 1000);
+    setInterval(() => renderDashboard(cachedData), 30000);
+    setInterval(fetchSheetData, 60000);
+  </script>
+</body>
+</html>
